@@ -13,7 +13,6 @@ Hello world!!
 
 </html>
 
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -347,4 +346,97 @@ Hello world!!
       width:100%;
       padding: 12px 12px;
       border-radius: 14px;
-      border:1px
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight:650;
+      outline:none;
+    }
+    [data-theme="light"] input, [data-theme="light"] textarea{
+      background: rgba(10,12,18,.03);
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(56,189,248,.55);
+      box-shadow: 0 0 0 4px rgba(56,189,248,.15);
+    }
+    textarea{ min-height: 118px; resize: vertical; }
+
+    .note{
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px dashed var(--border);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-weight:650;
+      font-size: 13px;
+    }
+    [data-theme="light"] .note{ background: rgba(10,12,18,.02); }
+
+    /* Footer */
+    footer{
+      padding: 26px 0 36px;
+      color: var(--muted);
+      font-weight:650;
+      font-size: 13px;
+    }
+    .foot{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      border-top:1px solid var(--border);
+      padding-top: 18px;
+    }
+    .foot a{ color: var(--muted); font-weight:800; }
+    .foot a:hover{ color: var(--text); }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .grid-3{ grid-template-columns: 1fr; }
+      .projects{ grid-template-columns: 1fr; }
+      .contact{ grid-template-columns: 1fr; }
+      .nav-links{ display:none; }
+      .hamburger{ display:inline-flex; }
+      .mobile{ display:block; }
+      .mobile[hidden]{ display:none; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior:auto !important; transition:none !important; animation:none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="#top" aria-label="Go to top">
+          <span class="logo" aria-hidden="true"></span>
+          <span>Nova</span>
+        </a>
+
+        <div class="nav-links" aria-label="Site links">
+          <a href="#features">Features</a>
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="nav-actions">
+          <button class="btn" id="themeBtn" type="button" aria-label="Toggle theme">
+            <span class="icon" aria-hidden="true">
+              <!-- simple moon/sun icon -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 12.7A8.5 8.5 0 0 1 11.3 3a7 7 0 1 0 9.7 9.7Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Theme
+          </button>
+
+          <a class="btn primary" href="#projects">View Work</a>
+
+          <button class="btn hamburger
+::contentReference[oaicite:0]{index=0}
