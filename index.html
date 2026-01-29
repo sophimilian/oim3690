@@ -1,408 +1,572 @@
-Hello world!!
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>My Page</title>
-  </head>
-  <body>
-    <h1>Title</h1>
-    <p>Hi! My name is Sophia Milian.</p>
-
-
-</html>
-
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nova — Web Tech Class Homepage</title>
-  <meta name="description" content="A modern, responsive homepage template for a web technology class." />
+  <title>OIM3690 — Sophia Milian | Class Hub</title>
+  <meta name="description" content="OIM3690 class homepage for Sophia Milian: notes, resources, schedule, and assignments with light/dark mode." />
+
   <style>
+    /* =========================
+       THEME TOKENS
+    ========================== */
     :root{
-      --bg: #0b1020;
+      /* Light Blue palette */
+      --blue-50:#eff8ff;
+      --blue-100:#dbefff;
+      --blue-200:#bfe3ff;
+      --blue-300:#93d0ff;
+      --blue-400:#5ab5ff;
+      --blue-500:#2f98ff;
+      --blue-600:#1e78f1;
+      --blue-700:#175ed0;
+      --blue-800:#154aa6;
+      --blue-900:#133c84;
+
+      --bg: #f7fbff;
+      --bg2:#eef6ff;
+      --panel:#ffffffcc;
+      --panelSolid:#ffffff;
+      --text:#0b1220;
+      --muted:#4b5565;
+      --border: rgba(15,23,42,.14);
+      --shadow: 0 18px 45px rgba(10,25,60,.12);
+
+      --accent: var(--blue-600);
+      --accent2: var(--blue-400);
+      --ring: rgba(47,152,255,.28);
+
+      --radius: 18px;
+      --radius2: 22px;
+      --max: 1120px;
+
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    /* Dark mode (cool, blue-tinted) */
+    [data-theme="dark"]{
+      --bg: #071122;
+      --bg2:#0a1830;
       --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.10);
-      --text: rgba(255,255,255,.90);
-      --muted: rgba(255,255,255,.70);
-      --border: rgba(255,255,255,.12);
+      --panelSolid: rgba(255,255,255,.06);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --border: rgba(255,255,255,.14);
       --shadow: 0 18px 45px rgba(0,0,0,.35);
-      --r: 18px;
-
-      --accent1: #7c3aed; /* purple */
-      --accent2: #22c55e; /* green */
-      --accent3: #38bdf8; /* sky */
+      --accent: var(--blue-400);
+      --accent2: var(--blue-300);
+      --ring: rgba(90,181,255,.22);
     }
 
-    /* Light theme */
-    [data-theme="light"]{
-      --bg: #f7f7fb;
-      --panel: rgba(0,0,0,.04);
-      --panel2: rgba(0,0,0,.08);
-      --text: rgba(10,12,18,.92);
-      --muted: rgba(10,12,18,.70);
-      --border: rgba(10,12,18,.12);
-      --shadow: 0 18px 45px rgba(20,22,30,.15);
-    }
-
+    /* =========================
+       BASE
+    ========================== */
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family: var(--sans);
       color: var(--text);
       background:
-        radial-gradient(900px 600px at 15% 15%, rgba(124,58,237,.35), transparent 60%),
-        radial-gradient(900px 600px at 85% 25%, rgba(56,189,248,.25), transparent 60%),
-        radial-gradient(900px 600px at 50% 85%, rgba(34,197,94,.20), transparent 60%),
-        var(--bg);
+        radial-gradient(900px 650px at 20% 10%, rgba(47,152,255,.20), transparent 60%),
+        radial-gradient(900px 650px at 80% 20%, rgba(90,181,255,.18), transparent 60%),
+        radial-gradient(900px 650px at 50% 95%, rgba(30,120,241,.12), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
       min-height:100vh;
       line-height:1.5;
     }
-
     a{ color:inherit; text-decoration:none; }
-    .container{ width:min(1120px, 92vw); margin:0 auto; }
+    .container{ width:min(var(--max), 92vw); margin:0 auto; }
 
-    /* Header */
+    /* Accessibility */
+    :focus-visible{
+      outline: none;
+      box-shadow: 0 0 0 4px var(--ring);
+      border-radius: 14px;
+    }
+    .skip{
+      position:absolute; left:-999px; top:0;
+      background: var(--panelSolid);
+      border:1px solid var(--border);
+      padding:10px 12px;
+      border-radius: 12px;
+      z-index:999;
+    }
+    .skip:focus{ left:12px; top:12px; }
+
+    /* =========================
+       HEADER / NAV
+    ========================== */
     header{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(14px);
-      background: linear-gradient(to bottom, rgba(10,12,18,.55), rgba(10,12,18,.18));
-      border-bottom:1px solid var(--border);
+      background: linear-gradient(to bottom, rgba(255,255,255,.70), rgba(255,255,255,.35));
+      border-bottom: 1px solid var(--border);
     }
-    [data-theme="light"] header{
-      background: linear-gradient(to bottom, rgba(255,255,255,.75), rgba(255,255,255,.35));
+    [data-theme="dark"] header{
+      background: linear-gradient(to bottom, rgba(7,17,34,.75), rgba(7,17,34,.25));
     }
 
     .nav{
       display:flex; align-items:center; justify-content:space-between;
-      padding:14px 0;
-      gap:12px;
+      gap: 14px;
+      padding: 14px 0;
     }
-
     .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:800; letter-spacing:.2px;
+      display:flex; align-items:center; gap: 12px;
+      font-weight: 900;
+      letter-spacing: -.2px;
     }
     .logo{
-      width:36px; height:36px; border-radius:12px;
+      width: 40px; height: 40px;
+      border-radius: 14px;
       background:
-        radial-gradient(12px 12px at 28% 30%, rgba(255,255,255,.9), transparent 60%),
-        linear-gradient(135deg, var(--accent1), var(--accent3));
-      box-shadow: 0 10px 28px rgba(124,58,237,.25);
-      border: 1px solid rgba(255,255,255,.18);
+        radial-gradient(14px 14px at 30% 30%, rgba(255,255,255,.95), transparent 60%),
+        linear-gradient(135deg, var(--blue-500), var(--blue-300));
+      border: 1px solid rgba(255,255,255,.35);
+      box-shadow: 0 18px 40px rgba(47,152,255,.22);
     }
-    [data-theme="light"] .logo{ border-color: rgba(10,12,18,.10); }
+    [data-theme="dark"] .logo{
+      border-color: rgba(255,255,255,.16);
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+    }
+    .brand small{
+      display:block;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
 
     .nav-links{
-      display:flex; align-items:center; gap:18px;
-      font-weight:600; font-size:14px; color:var(--muted);
+      display:flex; align-items:center; gap: 18px;
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--muted);
     }
-    .nav-links a{ padding:8px 10px; border-radius:12px; }
-    .nav-links a:hover{ background: var(--panel); color: var(--text); }
-
-    .nav-actions{ display:flex; align-items:center; gap:10px; }
-
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px;
-      padding:10px 14px;
+    .nav-links a{
+      padding: 10px 12px;
       border-radius: 14px;
-      border:1px solid var(--border);
+    }
+    .nav-links a:hover{
       background: var(--panel);
       color: var(--text);
-      font-weight:700;
-      font-size:14px;
-      box-shadow: none;
-      cursor:pointer;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      border: 1px solid var(--border);
     }
-    .btn:hover{ transform: translateY(-1px); background: var(--panel2); border-color: rgba(255,255,255,.20); }
-    [data-theme="light"] .btn:hover{ border-color: rgba(10,12,18,.18); }
 
+    .actions{
+      display:flex; align-items:center; gap: 10px;
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap: 10px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      font-weight: 900;
+      font-size: 14px;
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease, filter .15s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: color-mix(in srgb, var(--panelSolid) 65%, transparent);
+    }
     .btn.primary{
       border: none;
-      background: linear-gradient(135deg, var(--accent1), var(--accent3));
-      box-shadow: 0 18px 38px rgba(124,58,237,.25);
+      background: linear-gradient(135deg, var(--blue-600), var(--blue-400));
       color: white;
+      box-shadow: 0 18px 40px rgba(47,152,255,.24);
     }
-    .btn.primary:hover{ transform: translateY(-1px); filter: brightness(1.05); }
-
-    .icon{
-      width:18px; height:18px; display:inline-block;
+    [data-theme="dark"] .btn.primary{
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
     }
+    .btn.icon{
+      padding: 10px 12px;
+    }
+    .icon svg{ width: 18px; height: 18px; display:block; }
 
-    .hamburger{
+    .hamburger{ display:none; }
+
+    .mobileMenu{
       display:none;
-      padding:10px 12px;
+      padding: 0 0 14px 0;
     }
-
-    /* Mobile menu */
-    .mobile{
-      display:none;
-      padding: 0 0 16px 0;
-    }
-    .mobile a{
+    .mobileMenu a{
       display:block;
-      padding:12px 10px;
-      border-radius:14px;
-      border:1px solid transparent;
+      padding: 12px 10px;
+      border-radius: 14px;
+      font-weight: 900;
       color: var(--muted);
-      font-weight:700;
+      border: 1px solid transparent;
     }
-    .mobile a:hover{ background: var(--panel); color: var(--text); border-color: var(--border); }
-
-    /* Hero */
-    .hero{ padding: 56px 0 26px; }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 22px;
-      align-items:stretch;
+    .mobileMenu a:hover{
+      color: var(--text);
+      background: var(--panel);
+      border-color: var(--border);
     }
 
+    /* =========================
+       CARD / LAYOUT HELPERS
+    ========================== */
     .card{
       background: var(--panel);
       border: 1px solid var(--border);
-      border-radius: var(--r);
+      border-radius: var(--radius2);
       box-shadow: var(--shadow);
     }
+    .grid{
+      display:grid;
+      gap: 14px;
+    }
+    .grid.hero{
+      grid-template-columns: 1.15fr .85fr;
+      align-items:stretch;
+      gap: 16px;
+    }
+    .grid.two{
+      grid-template-columns: 1fr 1fr;
+    }
+    .grid.three{
+      grid-template-columns: repeat(3, 1fr);
+    }
 
-    .hero-main{ padding: 26px; overflow:hidden; position:relative; }
-    .hero-main:before{
+    .section{
+      padding: 26px 0;
+    }
+    .sectionHead{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .sectionHead h2{
+      margin:0;
+      font-size: 20px;
+      letter-spacing: -.25px;
+    }
+    .sectionHead p{
+      margin:0;
+      max-width: 62ch;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .tag{
+      display:inline-flex; align-items:center; gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--panelSolid) 75%, transparent);
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 12px;
+      white-space:nowrap;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+    .heroWrap{ padding: 54px 0 12px; }
+    .heroMain{
+      position:relative;
+      overflow:hidden;
+      padding: 24px;
+    }
+    .heroMain:before{
       content:"";
       position:absolute; inset:-2px;
       background:
-        radial-gradient(420px 260px at 20% 18%, rgba(124,58,237,.40), transparent 60%),
-        radial-gradient(420px 260px at 70% 35%, rgba(56,189,248,.25), transparent 60%),
-        radial-gradient(420px 260px at 40% 90%, rgba(34,197,94,.18), transparent 60%);
-      filter: blur(1px);
-      opacity:.9;
+        radial-gradient(520px 300px at 20% 20%, rgba(47,152,255,.24), transparent 60%),
+        radial-gradient(520px 300px at 80% 28%, rgba(90,181,255,.18), transparent 60%),
+        radial-gradient(520px 300px at 45% 95%, rgba(30,120,241,.12), transparent 60%);
       pointer-events:none;
       z-index:0;
     }
-    .hero-main > *{ position:relative; z-index:1; }
+    .heroMain > *{ position:relative; z-index:1; }
 
     .badge{
-      display:inline-flex; align-items:center; gap:10px;
+      display:inline-flex; align-items:center; gap: 10px;
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.14);
+      font-size: 12px;
+      font-weight: 900;
       color: var(--muted);
-      font-weight:800;
-      font-size:12px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--panelSolid) 72%, transparent);
     }
-    [data-theme="light"] .badge{
-      background: rgba(10,12,18,.04);
-      border-color: rgba(10,12,18,.10);
+    .badge .dot{
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-500), var(--blue-300));
+      box-shadow: 0 12px 22px rgba(47,152,255,.22);
     }
 
     h1{
       margin: 14px 0 10px;
       font-size: clamp(32px, 5vw, 52px);
       line-height: 1.05;
-      letter-spacing: -0.8px;
+      letter-spacing: -1px;
     }
     .sub{
       margin: 0 0 18px;
-      max-width: 58ch;
       color: var(--muted);
-      font-weight: 600;
+      font-weight: 750;
       font-size: 16px;
+      max-width: 70ch;
     }
 
-    .cta-row{ display:flex; gap:12px; flex-wrap:wrap; }
+    .metaRow{
+      display:flex; flex-wrap:wrap;
+      gap: 10px;
+      margin: 14px 0 4px;
+    }
+    .meta{
+      display:inline-flex; align-items:center; gap: 10px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--panelSolid) 72%, transparent);
+      color: var(--muted);
+      font-weight: 850;
+      font-size: 13px;
+    }
+    .meta strong{ color: var(--text); }
+    .meta .mono{ font-family: var(--mono); font-weight: 900; }
 
-    .hero-side{
-      padding: 18px;
+    .ctaRow{ display:flex; gap: 12px; flex-wrap:wrap; margin-top: 16px; }
+
+    /* Side panel in hero */
+    .heroSide{
+      padding: 16px;
       display:flex;
       flex-direction:column;
       gap: 12px;
     }
-
     .mini{
-      padding: 16px;
-      border-radius: 16px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--panelSolid) 65%, transparent);
+      padding: 14px;
     }
-    [data-theme="light"] .mini{ background: rgba(10,12,18,.03); }
-
     .mini h3{
-      margin: 0 0 8px;
+      margin:0 0 6px;
       font-size: 14px;
-      letter-spacing:.2px;
+      letter-spacing: -.1px;
     }
-    .mini p{ margin: 0; color: var(--muted); font-weight:600; font-size:13px; }
-    .mini strong{ color: var(--text); }
-
-    .pill-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
-    .pill{
-      font-size:12px;
-      font-weight:800;
-      color: var(--muted);
-      padding: 8px 10px;
-      border-radius: 999px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.04);
-    }
-    [data-theme="light"] .pill{ background: rgba(10,12,18,.03); }
-
-    /* Sections */
-    section{ padding: 26px 0; }
-    .section-title{
-      display:flex; align-items:flex-end; justify-content:space-between;
-      gap:14px;
-      margin-bottom: 14px;
-    }
-    .section-title h2{
-      margin:0;
-      font-size: 20px;
-      letter-spacing:-.2px;
-    }
-    .section-title p{
+    .mini p{
       margin:0;
       color: var(--muted);
-      font-weight:600;
+      font-weight: 750;
       font-size: 13px;
-      max-width: 56ch;
     }
-
-    .grid-3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    .feature{
-      padding: 16px;
-      border-radius: var(--r);
-    }
-    .feature .kicker{
-      display:flex; align-items:center; gap:10px;
-      font-weight:900; font-size:13px;
-      margin-bottom: 8px;
-    }
-    .dot{
-      width:10px; height:10px; border-radius:50%;
-      background: linear-gradient(135deg, var(--accent2), var(--accent3));
-      box-shadow: 0 10px 18px rgba(56,189,248,.18);
-    }
-    .feature p{ margin:0; color: var(--muted); font-weight:600; font-size: 13px; }
-
-    /* Projects */
-    .projects{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    .project{
-      padding: 16px;
-      border-radius: var(--r);
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-    }
-    .project .top{
-      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
-    }
-    .tag{
-      font-size:12px; font-weight:900;
+    .pillRow{ display:flex; flex-wrap:wrap; gap: 8px; margin-top: 10px; }
+    .pill{
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--muted);
       padding: 8px 10px;
       border-radius: 999px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      white-space:nowrap;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--panelSolid) 70%, transparent);
     }
-    [data-theme="light"] .tag{ background: rgba(10,12,18,.03); }
-    .project h3{ margin:0; font-size:16px; letter-spacing:-.2px; }
-    .project p{ margin:0; color: var(--muted); font-weight:600; font-size: 13px; }
-    .project a.more{
-      margin-top:auto;
-      display:inline-flex; align-items:center; gap:10px;
-      font-weight:900; font-size:13px; color: var(--text);
-      opacity:.9;
-    }
-    .project a.more:hover{ opacity:1; }
 
-    /* Contact */
-    .contact{
-      padding: 18px;
+    /* =========================
+       NOTES
+    ========================== */
+    .notesLayout{
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
+      grid-template-columns: 1fr .95fr;
       gap: 14px;
       align-items:stretch;
     }
-    .contact form{
-      display:grid; gap: 10px;
-    }
-    label{
-      font-weight:800; font-size:12px; color: var(--muted);
-    }
-    input, textarea{
-      width:100%;
-      padding: 12px 12px;
-      border-radius: 14px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.04);
-      color: var(--text);
-      font-weight:650;
-      outline:none;
-    }
-    [data-theme="light"] input, [data-theme="light"] textarea{
-      background: rgba(10,12,18,.03);
-    }
-    input:focus, textarea:focus{
-      border-color: rgba(56,189,248,.55);
-      box-shadow: 0 0 0 4px rgba(56,189,248,.15);
-    }
-    textarea{ min-height: 118px; resize: vertical; }
 
-    .note{
-      padding: 16px;
-      border-radius: 16px;
-      border: 1px dashed var(--border);
-      background: rgba(255,255,255,.03);
+    .notesCard{ padding: 16px; }
+    .notesCard header{
+      position:static;
+      backdrop-filter:none;
+      background:none;
+      border:0;
+      padding:0;
+    }
+    .notesTop{
+      display:flex; align-items:flex-start; justify-content:space-between; gap: 12px;
+      margin-bottom: 12px;
+    }
+    .notesTop h3{
+      margin:0;
+      font-size: 16px;
+      letter-spacing: -.2px;
+    }
+    .notesTop p{
+      margin: 4px 0 0;
       color: var(--muted);
-      font-weight:650;
+      font-weight: 750;
       font-size: 13px;
     }
-    [data-theme="light"] .note{ background: rgba(10,12,18,.02); }
 
-    /* Footer */
-    footer{
-      padding: 26px 0 36px;
+    .noteControls{
+      display:flex; gap: 10px; flex-wrap:wrap;
+      margin-bottom: 12px;
+    }
+
+    .field{
+      width:100%;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--panelSolid) 70%, transparent);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 12px 12px;
+      font-weight: 750;
+      outline:none;
+    }
+    .field::placeholder{ color: color-mix(in srgb, var(--muted) 75%, transparent); }
+
+    textarea.field{
+      min-height: 180px;
+      resize: vertical;
+      font-family: var(--sans);
+      line-height: 1.45;
+    }
+
+    .savedList{
+      padding: 16px;
+    }
+    .savedHeader{
+      display:flex; align-items:flex-end; justify-content:space-between; gap: 12px;
+      margin-bottom: 10px;
+    }
+    .savedHeader h3{ margin:0; font-size: 16px; }
+    .savedHeader small{ color: var(--muted); font-weight: 850; }
+
+    .noteItem{
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px;
+      background: color-mix(in srgb, var(--panelSolid) 70%, transparent);
+      margin-bottom: 10px;
+    }
+    .noteItem .row{
+      display:flex; justify-content:space-between; gap:10px; align-items:flex-start;
+    }
+    .noteItem .title{
+      font-weight: 950;
+      letter-spacing: -.1px;
+      margin:0;
+      font-size: 14px;
+    }
+    .noteItem .meta2{
+      font-family: var(--mono);
       color: var(--muted);
-      font-weight:650;
+      font-weight: 900;
+      font-size: 12px;
+      white-space:nowrap;
+    }
+    .noteItem .body{
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-weight: 750;
+      font-size: 13px;
+      white-space: pre-wrap;
+    }
+    .noteItem .tools{
+      display:flex; gap: 8px; margin-top: 10px; flex-wrap:wrap;
+    }
+    .btn.small{
+      padding: 8px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 950;
+    }
+    .btn.danger{
+      border: 1px solid color-mix(in srgb, #ef4444 55%, var(--border));
+      background: color-mix(in srgb, #ef4444 10%, var(--panelSolid));
+      color: color-mix(in srgb, #ef4444 70%, var(--text));
+    }
+
+    /* =========================
+       RESOURCES / SCHEDULE
+    ========================== */
+    .resourceCard{ padding: 16px; }
+    .resourceCard h3{ margin:0 0 8px; font-size: 16px; letter-spacing:-.2px; }
+    .resourceCard p{ margin:0; color: var(--muted); font-weight: 750; font-size: 13px; }
+
+    .list{
+      margin: 12px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap: 10px;
+    }
+    .list li{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--panelSolid) 70%, transparent);
+    }
+    .list .left{
+      display:flex; gap: 10px; align-items:flex-start;
+    }
+    .chip{
+      width: 34px; height: 34px; flex: 0 0 34px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--blue-600), var(--blue-300));
+      display:flex; align-items:center; justify-content:center;
+      color:white;
+      box-shadow: 0 18px 36px rgba(47,152,255,.20);
+      font-weight: 950;
+      font-size: 14px;
+    }
+    .list strong{ display:block; font-weight: 950; letter-spacing: -.1px; }
+    .list span{ color: var(--muted); font-weight: 750; font-size: 13px; }
+    .link{
+      font-weight: 950;
+      color: color-mix(in srgb, var(--accent) 70%, var(--text));
+      white-space:nowrap;
+      opacity: .95;
+    }
+    .link:hover{ opacity:1; text-decoration: underline; }
+
+    /* =========================
+       FOOTER
+    ========================== */
+    footer{
+      padding: 26px 0 38px;
+      color: var(--muted);
+      font-weight: 750;
       font-size: 13px;
     }
     .foot{
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap: 12px;
-      border-top:1px solid var(--border);
-      padding-top: 18px;
+      flex-wrap:wrap;
     }
-    .foot a{ color: var(--muted); font-weight:800; }
-    .foot a:hover{ color: var(--text); }
 
-    /* Responsive */
-    @media (max-width: 920px){
-      .hero-grid{ grid-template-columns: 1fr; }
-      .grid-3{ grid-template-columns: 1fr; }
-      .projects{ grid-template-columns: 1fr; }
-      .contact{ grid-template-columns: 1fr; }
+    /* =========================
+       RESPONSIVE
+    ========================== */
+    @media (max-width: 980px){
+      .grid.hero{ grid-template-columns: 1fr; }
+      .grid.three{ grid-template-columns: 1fr; }
+      .grid.two{ grid-template-columns: 1fr; }
+      .notesLayout{ grid-template-columns: 1fr; }
       .nav-links{ display:none; }
       .hamburger{ display:inline-flex; }
-      .mobile{ display:block; }
-      .mobile[hidden]{ display:none; }
+      .mobileMenu{ display:block; }
+      .mobileMenu[hidden]{ display:none; }
     }
 
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce){
       *{ scroll-behavior:auto !important; transition:none !important; animation:none !important; }
     }
@@ -410,33 +574,698 @@ Hello world!!
 </head>
 
 <body>
+  <a class="skip" href="#main">Skip to content</a>
+
   <header>
     <div class="container">
-      <nav class="nav" aria-label="Primary">
+      <nav class="nav" aria-label="Primary Navigation">
         <a class="brand" href="#top" aria-label="Go to top">
           <span class="logo" aria-hidden="true"></span>
-          <span>Nova</span>
+          <span>
+            OIM3690
+            <small>Sophia Milian • Class Hub</small>
+          </span>
         </a>
 
-        <div class="nav-links" aria-label="Site links">
-          <a href="#features">Features</a>
-          <a href="#projects">Projects</a>
+        <div class="nav-links" aria-label="Site sections">
+          <a href="#notes">Class Notes</a>
+          <a href="#resources">Resources</a>
+          <a href="#schedule">Schedule</a>
           <a href="#about">About</a>
-          <a href="#contact">Contact</a>
         </div>
 
-        <div class="nav-actions">
-          <button class="btn" id="themeBtn" type="button" aria-label="Toggle theme">
-            <span class="icon" aria-hidden="true">
-              <!-- simple moon/sun icon -->
+        <div class="actions">
+          <button class="btn icon" id="themeBtn" type="button" aria-label="Toggle dark/light mode">
+            <span class="icon" aria-hidden="true" id="themeIcon">
+              <!-- icon swapped by JS -->
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M21 12.7A8.5 8.5 0 0 1 11.3 3a7 7 0 1 0 9.7 9.7Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
-            Theme
           </button>
 
-          <a class="btn primary" href="#projects">View Work</a>
+          <a class="btn primary" href="#notes">Open Notes</a>
 
-          <button class="btn hamburger
-::contentReference[oaicite:0]{index=0}
+          <button class="btn icon hamburger" id="menuBtn" type="button" aria-label="Open mobile menu" aria-expanded="false">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </button>
+        </div>
+      </nav>
+
+      <div class="mobileMenu" id="mobileMenu" hidden>
+        <a href="#notes">Class Notes</a>
+        <a href="#resources">Resources</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#about">About</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container" id="top">
+      <!-- HERO -->
+      <section class="heroWrap">
+        <div class="grid hero">
+          <div class="card heroMain">
+            <div class="badge">
+              <span class="dot" aria-hidden="true"></span>
+              <span>OIM3690 — Web Tech Hub</span>
+            </div>
+
+            <h1>Stay organized, take cleaner notes, and ship better projects.</h1>
+
+            <p class="sub">
+              Welcome to <strong>OIM3690</strong> with <strong>Sophia Milian</strong>.
+              This single-file homepage includes a notes section with saving, quick resources,
+              a schedule layout, and a polished light-blue design with <strong>dark & light mode</strong>.
+            </p>
+
+            <div class="metaRow" aria-label="Course metadata">
+              <div class="meta">
+                <span aria-hidden="true">📅</span>
+                <span>Today: <strong id="todayText">—</strong></span>
+              </div>
+              <div class="meta">
+                <span aria-hidden="true">🧠</span>
+                <span>Focus: <strong>HTML • CSS • JS</strong></span>
+              </div>
+              <div class="meta">
+                <span aria-hidden="true">🔗</span>
+                <span>File: <span class="mono">index.html</span></span>
+              </div>
+            </div>
+
+            <div class="ctaRow">
+              <a class="btn primary" href="#notes">
+                Add Notes
+                <span class="icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </a>
+              <a class="btn" href="#resources">View Resources</a>
+              <a class="btn" href="#schedule">See Schedule</a>
+            </div>
+          </div>
+
+          <aside class="card heroSide" aria-label="Quick widgets">
+            <div class="mini">
+              <h3>Class Goal</h3>
+              <p>Build modern pages: semantic layout, responsive design, and small JS interactions.</p>
+              <div class="pillRow">
+                <span class="pill">Semantic HTML</span>
+                <span class="pill">Flex/Grid</span>
+                <span class="pill">Accessibility</span>
+              </div>
+            </div>
+
+            <div class="mini">
+              <h3>Project Workflow</h3>
+              <p><strong>Plan → Build → Test → Publish</strong><br/>Keep it simple and consistent.</p>
+              <div class="pillRow">
+                <span class="pill">Mobile-first</span>
+                <span class="pill">Reusable styles</span>
+                <span class="pill">Clean UI</span>
+              </div>
+            </div>
+
+            <div class="mini">
+              <h3>Tip of the Day</h3>
+              <p>Most “modern” design is just: <strong>good spacing</strong>, <strong>strong type</strong>, and <strong>consistent components</strong>.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- NOTES -->
+      <section class="section" id="notes" aria-label="Class Notes">
+        <div class="sectionHead">
+          <div>
+            <h2>Class Notes</h2>
+            <p>Write notes by topic and save them (stored in your browser). Click any saved note to reload it.</p>
+          </div>
+          <span class="tag" aria-hidden="true">Auto-saves locally</span>
+        </div>
+
+        <div class="notesLayout">
+          <div class="card notesCard">
+            <div class="notesTop">
+              <div>
+                <h3>Create / Edit Note</h3>
+                <p>Use a clear title + key takeaways. Keep it structured.</p>
+              </div>
+              <span class="tag" id="noteCountTag">0 notes</span>
+            </div>
+
+            <div class="noteControls">
+              <input class="field" id="noteTitle" type="text" placeholder="Note title (e.g., Week 2 — CSS Flexbox)" autocomplete="off" />
+              <input class="field" id="noteTopic" type="text" placeholder="Topic tag (e.g., Layout, Forms, JS)" autocomplete="off" />
+            </div>
+
+            <textarea class="field" id="noteBody" placeholder="Write your notes here...
+- Key concepts:
+- Examples:
+- Homework reminders:
+- Questions for next class:"></textarea>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+              <button class="btn primary" id="saveNoteBtn" type="button">Save Note</button>
+              <button class="btn" id="newNoteBtn" type="button">New Note</button>
+              <button class="btn danger small" id="clearAllBtn" type="button" title="Deletes all saved notes">Clear All</button>
+            </div>
+
+            <p style="margin:12px 0 0; color:var(--muted); font-weight:750; font-size:13px;">
+              <strong>Privacy:</strong> Notes are stored in <span style="font-family:var(--mono); font-weight:900;">localStorage</span> on this device only.
+            </p>
+          </div>
+
+          <div class="card savedList" aria-label="Saved notes">
+            <div class="savedHeader">
+              <div>
+                <h3>Saved Notes</h3>
+                <small id="todaySmall">—</small>
+              </div>
+              <span class="tag">Click to open</span>
+            </div>
+
+            <div id="notesList">
+              <!-- notes render here -->
+            </div>
+
+            <div class="mini" style="margin-top:10px;">
+              <h3>How to use this section</h3>
+              <p>
+                Save a note after each lecture.
+                Title example: <strong>Week 3 — DOM + Events</strong>.
+                Topic example: <strong>JavaScript</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESOURCES -->
+      <section class="section" id="resources" aria-label="Resources">
+        <div class="sectionHead">
+          <div>
+            <h2>Resources</h2>
+            <p>Quick links you’ll use all semester. Replace the placeholder links with your real ones.</p>
+          </div>
+          <span class="tag" aria-hidden="true">Light-blue theme</span>
+        </div>
+
+        <div class="grid three">
+          <div class="card resourceCard">
+            <h3>Course Tools</h3>
+            <p>Core tools for building, testing, and submitting your work.</p>
+            <ul class="list">
+              <li>
+                <div class="left">
+                  <div class="chip">V</div>
+                  <div>
+                    <strong>VS Code</strong>
+                    <span>Editor + extensions (Live Server, Prettier)</span>
+                  </div>
+                </div>
+                <a class="link" href="#" onclick="return false;">Edit</a>
+              </li>
+              <li>
+                <div class="left">
+                  <div class="chip">G</div>
+                  <div>
+                    <strong>GitHub</strong>
+                    <span>Version control + hosting (Pages)</span>
+                  </div>
+                </div>
+                <a class="link" href="#" onclick="return false;">Edit</a>
+              </li>
+              <li>
+                <div class="left">
+                  <div class="chip">C</div>
+                  <div>
+                    <strong>Chrome DevTools</strong>
+                    <span>Inspect, debug, and audit performance</span>
+                  </div>
+                </div>
+                <a class="link" href="#" onclick="return false;">Edit</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card resourceCard">
+            <h3>References</h3>
+            <p>Docs you’ll want open while you work.</p>
+            <ul class="list">
+              <li>
+                <div class="left">
+                  <div class="chip">H</div>
+                  <div>
+                    <strong>MDN Web Docs</strong>
+                    <span>HTML/CSS/JS documentation</span>
+                  </div>
+                </div>
+                <a class="link" href="#" onclick="return false;">Edit</a>
+              </li>
+              <li>
+                <div class="left">
+                  <div class="chip">A</div>
+                  <div>
+                    <strong>Accessibility</strong>
+                    <span>ARIA, contrast, keyboard navigation</span>
+                  </div>
+                </div>
+                <a class="link" href="#" onclick="return false;">Edit</a>
+              </li>
+              <li>
+                <div class="left">
+                  <div class="chip">C</div>
+                  <div>
+                    <strong>Color & Type</strong>
+                    <span>Spacing + typography guidelines</span>
+                  </div>
+                </div>
+                <a class="link" href="#" onclick="return false;">Edit</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card resourceCard">
+            <h3>Submission</h3>
+            <p>Keep deadlines and checklists in one place.</p>
+            <ul class="list">
+              <li>
+                <div class="left">
+                  <div class="chip">✓</div>
+                  <div>
+                    <strong>Project Checklist</strong>
+                    <span>Mobile layout, valid HTML, clean CSS</span>
+                  </div>
+                </div>
+                <a class="link" href="#schedule">Open</a>
+              </li>
+              <li>
+                <div class="left">
+                  <div class="chip">↗</div>
+                  <div>
+                    <strong>Portfolio Link</strong>
+                    <span>Add your live URL here</span>
+                  </div>
+                </div>
+                <a class="link" href="#" onclick="return false;">Edit</a>
+              </li>
+              <li>
+                <div class="left">
+                  <div class="chip">📝</div>
+                  <div>
+                    <strong>Office Hours</strong>
+                    <span>Put instructor/TA hours here</span>
+                  </div>
+                </div>
+                <a class="link" href="#" onclick="return false;">Edit</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCHEDULE -->
+      <section class="section" id="schedule" aria-label="Schedule">
+        <div class="sectionHead">
+          <div>
+            <h2>Schedule</h2>
+            <p>A clean, modern schedule section. Update it weekly with what you covered and what’s due.</p>
+          </div>
+          <span class="tag" aria-hidden="true">Weekly plan</span>
+        </div>
+
+        <div class="grid two">
+          <div class="card resourceCard">
+            <h3>Week Plan (example)</h3>
+            <p>Replace these items with your real class schedule.</p>
+            <ul class="list">
+              <li>
+                <div class="left">
+                  <div class="chip">1</div>
+                  <div>
+                    <strong>HTML Foundations</strong>
+                    <span>Semantic tags, page structure, forms</span>
+                  </div>
+                </div>
+                <span class="tag">Lecture</span>
+              </li>
+              <li>
+                <div class="left">
+                  <div class="chip">2</div>
+                  <div>
+                    <strong>CSS Layout</strong>
+                    <span>Flexbox, grid, responsive patterns</span>
+                  </div>
+                </div>
+                <span class="tag">Workshop</span>
+              </li>
+              <li>
+                <div class="left">
+                  <div class="chip">3</div>
+                  <div>
+                    <strong>JavaScript Basics</strong>
+                    <span>DOM, events, simple components</span>
+                  </div>
+                </div>
+                <span class="tag">Lab</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card resourceCard" id="about">
+            <h3>About OIM3690</h3>
+            <p>
+              This page is built as a clean, modern hub for <strong>OIM3690</strong> with <strong>Sophia Milian</strong>.
+              It uses a light-blue theme, responsive layout, and minimal JavaScript.
+            </p>
+
+            <ul class="list" style="margin-top:12px;">
+              <li>
+                <div class="left">
+                  <div class="chip">🎯</div>
+                  <div>
+                    <strong>Goal</strong>
+                    <span>Build professional front-end projects</span>
+                  </div>
+                </div>
+                <span class="tag">Semester</span>
+              </li>
+              <li>
+                <div class="left">
+                  <div class="chip">🧩</div>
+                  <div>
+                    <strong>What to practice</strong>
+                    <span>Layout, components, accessibility</span>
+                  </div>
+                </div>
+                <span class="tag">Skills</span>
+              </li>
+              <li>
+                <div class="left">
+                  <div class="chip">⚡</div>
+                  <div>
+                    <strong>Keep it simple</strong>
+                    <span>Small JS, clean CSS, strong structure</span>
+                  </div>
+                </div>
+                <span class="tag">Style</span>
+              </li>
+            </ul>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+              <a class="btn primary" href="#top">Back to Top</a>
+              <a class="btn" href="#notes">Add Notes</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="foot">
+          <div>
+            © <span id="year"></span> • OIM3690 — Sophia Milian
+            <span style="display:inline-block; margin-left:10px;" class="tag">Theme: Light Blue</span>
+          </div>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a href="#notes">Notes</a>
+            <a href="#resources">Resources</a>
+            <a href="#schedule">Schedule</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    // =========================
+    // Minimal JS: theme, mobile menu, date, notes storage
+    // =========================
+
+    // --- Theme ---
+    const themeBtn = document.getElementById('themeBtn');
+    const themeIcon = document.getElementById('themeIcon');
+
+    const setTheme = (theme) => {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+
+      // Swap icon (sun for dark mode, moon for light mode)
+      if (theme === 'dark') {
+        themeIcon.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        `;
+      } else {
+        themeIcon.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M21 12.7A8.5 8.5 0 0 1 11.3 3a7 7 0 1 0 9.7 9.7Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        `;
+      }
+    };
+
+    // Default: dark if user prefers, else light (but remember saved choice)
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      setTheme(savedTheme);
+    } else {
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(prefersDark ? 'dark' : 'light');
+    }
+
+    themeBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    // --- Mobile menu ---
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', () => {
+        const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', String(!isOpen));
+        mobileMenu.hidden = isOpen;
+      });
+
+      mobileMenu.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (!link) return;
+        menuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenu.hidden = true;
+      });
+    }
+
+    // --- Date ---
+    const todayText = document.getElementById('todayText');
+    const todaySmall = document.getElementById('todaySmall');
+    const now = new Date();
+
+    // Format with weekday for "more detail"
+    const pretty = new Intl.DateTimeFormat(undefined, {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    }).format(now);
+
+    todayText.textContent = pretty;
+    todaySmall.textContent = "Updated: " + pretty;
+
+    // Footer year
+    document.getElementById('year').textContent = now.getFullYear();
+
+    // --- Notes (localStorage) ---
+    const noteTitle = document.getElementById('noteTitle');
+    const noteTopic = document.getElementById('noteTopic');
+    const noteBody = document.getElementById('noteBody');
+    const saveNoteBtn = document.getElementById('saveNoteBtn');
+    const newNoteBtn = document.getElementById('newNoteBtn');
+    const clearAllBtn = document.getElementById('clearAllBtn');
+    const notesList = document.getElementById('notesList');
+    const noteCountTag = document.getElementById('noteCountTag');
+
+    const STORAGE_KEY = 'oim3690_notes_v1';
+
+    // track edit mode
+    let editingId = null;
+
+    const loadNotes = () => {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch {
+        return [];
+      }
+    };
+
+    const saveNotes = (notes) => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+    };
+
+    const formatTime = (d) => {
+      return new Intl.DateTimeFormat(undefined, {
+        month: 'short', day: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      }).format(d);
+    };
+
+    const renderNotes = () => {
+      const notes = loadNotes();
+      noteCountTag.textContent = `${notes.length} note${notes.length === 1 ? '' : 's'}`;
+
+      if (!notes.length) {
+        notesList.innerHTML = `
+          <div class="mini">
+            <h3>No notes yet</h3>
+            <p>Start by saving your first lecture note. You can organize by topic and date.</p>
+          </div>
+        `;
+        return;
+      }
+
+      // newest first
+      const sorted = [...notes].sort((a,b) => b.updatedAt - a.updatedAt);
+
+      notesList.innerHTML = sorted.map(n => `
+        <div class="noteItem">
+          <div class="row">
+            <div>
+              <p class="title">${escapeHTML(n.title || 'Untitled Note')}</p>
+              <div style="margin-top:6px; display:flex; gap:8px; flex-wrap:wrap;">
+                <span class="tag">${escapeHTML(n.topic || 'General')}</span>
+                <span class="tag">${escapeHTML(n.course)}</span>
+              </div>
+            </div>
+            <div class="meta2">${escapeHTML(formatTime(new Date(n.updatedAt)))}</div>
+          </div>
+
+          <p class="body">${escapeHTML(n.body || '').slice(0, 420)}${(n.body && n.body.length > 420) ? '…' : ''}</p>
+
+          <div class="tools">
+            <button class="btn small" type="button" onclick="openNote('${n.id}')">Open</button>
+            <button class="btn small" type="button" onclick="duplicateNote('${n.id}')">Duplicate</button>
+            <button class="btn danger small" type="button" onclick="deleteNote('${n.id}')">Delete</button>
+          </div>
+        </div>
+      `).join('');
+    };
+
+    const resetEditor = () => {
+      editingId = null;
+      noteTitle.value = '';
+      noteTopic.value = '';
+      noteBody.value = '';
+      noteTitle.focus();
+      saveNoteBtn.textContent = 'Save Note';
+    };
+
+    const escapeHTML = (str) => {
+      return String(str)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    };
+
+    // Expose functions for inline buttons
+    window.openNote = (id) => {
+      const notes = loadNotes();
+      const note = notes.find(n => n.id === id);
+      if (!note) return;
+
+      editingId = id;
+      noteTitle.value = note.title || '';
+      noteTopic.value = note.topic || '';
+      noteBody.value = note.body || '';
+      saveNoteBtn.textContent = 'Update Note';
+
+      // scroll to editor
+      document.getElementById('notes').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    window.deleteNote = (id) => {
+      const notes = loadNotes().filter(n => n.id !== id);
+      saveNotes(notes);
+      if (editingId === id) resetEditor();
+      renderNotes();
+    };
+
+    window.duplicateNote = (id) => {
+      const notes = loadNotes();
+      const note = notes.find(n => n.id === id);
+      if (!note) return;
+
+      const copy = {
+        ...note,
+        id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random(),
+        title: (note.title || 'Untitled') + ' (Copy)',
+        updatedAt: Date.now()
+      };
+
+      notes.push(copy);
+      saveNotes(notes);
+      renderNotes();
+    };
+
+    saveNoteBtn.addEventListener('click', () => {
+      const title = noteTitle.value.trim();
+      const topic = noteTopic.value.trim();
+      const body = noteBody.value.trim();
+
+      if (!title && !body) {
+        alert('Add a title or some note content before saving.');
+        return;
+      }
+
+      const notes = loadNotes();
+      const payload = {
+        id: editingId || (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random()),
+        course: 'OIM3690 • Sophia Milian',
+        title: title || 'Untitled Note',
+        topic: topic || 'General',
+        body: body || '',
+        updatedAt: Date.now()
+      };
+
+      if (editingId) {
+        const idx = notes.findIndex(n => n.id === editingId);
+        if (idx !== -1) notes[idx] = payload;
+      } else {
+        notes.push(payload);
+      }
+
+      saveNotes(notes);
+      renderNotes();
+      resetEditor();
+    });
+
+    newNoteBtn.addEventListener('click', resetEditor);
+
+    clearAllBtn.addEventListener('click', () => {
+      const ok = confirm('Delete ALL saved notes from this device? This cannot be undone.');
+      if (!ok) return;
+      localStorage.removeItem(STORAGE_KEY);
+      resetEditor();
+      renderNotes();
+    });
+
+    // Initial render
+    renderNotes();
+  </script>
+</body>
+</html>
