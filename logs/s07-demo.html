@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Basics - Learning Guide</title>
+</head>
+<body>
+    <!-- SEMANTIC HEADER: Represents top of page with logo, nav, etc -->
+    <header>
+        <h1>Welcome to HTML Basics</h1>
+        <p>Learn HTML tags and semantic elements</p>
+    </header>
+
+    <hr>
+
+    <!-- SEMANTIC NAV: Navigation links section -->
+    <nav>
+        <a href="#headings">Headings</a> |
+        <a href="#formatting">Formatting</a> |
+        <a href="#lists">Lists</a> |
+        <a href="#forms">Forms</a> |
+        <a href="#semantic">Semantic Tags</a>
+    </nav>
+
+    <hr>
+
+    <!-- SEMANTIC MAIN: Primary content of the page -->
+    <main>
+        <!-- HEADINGS SECTION -->
+        <section id="headings">
+            <h2>Headings</h2>
+            <p>Headings are used for titles and sections (h1 is largest, h6 is smallest)</p>
+            <h1>This is Heading 1 (Main Title)</h1>
+            <h2>This is a Heading 2</h2>
+            <h3>This is a Heading 3</h3>
+            <h4>This is a Heading 4</h4>
+            <h5>This is a Heading 5</h5>
+            <h6>This is a Heading 6 (Smallest)</h6>
+        </section>
+
+        <hr>
+
+        <!-- PARAGRAPHS AND LINE BREAKS -->
+        <section>
+            <h2>Paragraphs and Line Breaks</h2>
+            <p>This is a paragraph. Paragraphs are blocks of text that are automatically formatted with spacing before and after.</p>
+            <!-- LINE BREAK: Creates a single line break -->
+            <p>This is line 1<br>This is line 2 after a break</p>
+        </section>
+
+        <hr>
+
+        <!-- TEXT FORMATTING TAGS -->
+        <section id="formatting">
+            <h2>Text Formatting</h2>
+            <p>This text is <strong>bold</strong> using the strong tag.</p>
+            <p>This text is <b>bold</b> using the b tag.</p>
+            <p>This text is <em>italicized</em> using the em tag.</p>
+            <p>This text is <i>italicized</i> using the i tag.</p>
+            <p>This text is <u>underlined</u> using the u tag.</p>
+            <p>This text has a <mark>highlight</mark> using the mark tag.</p>
+            <p>This word is <span style="color: red;">red</span> using span for inline styling.</p>
+        </section>
+
+        <hr>
+
+        <!-- LINKS: Navigate to other pages or websites -->
+        <section>
+            <h2>Links</h2>
+            <a href="https://www.google.com">Click here to go to Google</a>
+            <br>
+            <a href="index.html">Link to another page in your website</a>
+            <br>
+            <a href="mailto:student@babson.edu">Email us</a>
+        </section>
+
+        <hr>
+
+        <!-- LISTS: Organize information -->
+        <section id="lists">
+            <h2>Lists</h2>
+            
+            <!-- UNORDERED LIST: Bullet points -->
+            <h3>Unordered List (Bullets)</h3>
+            <ul>
+                <li>First item</li>
+                <li>Second item</li>
+                <li>Third item</li>
+            </ul>
+
+            <!-- ORDERED LIST: Numbered -->
+            <h3>Ordered List (Numbered)</h3>
+            <ol>
+                <li>Step one</li>
+                <li>Step two</li>
+                <li>Step three</li>
+            </ol>
+
+            <!-- DESCRIPTION LIST: Term and definition pairs -->
+            <h3>Description List (Terms & Definitions)</h3>
+            <dl>
+                <dt>HTML</dt>
+                <dd>HyperText Markup Language - the standard for web pages</dd>
+                <dt>CSS</dt>
+                <dd>Cascading Style Sheets - used for styling web pages</dd>
+                <dt>JavaScript</dt>
+                <dd>Programming language for interactive web pages</dd>
+            </dl>
+        </section>
+
+        <hr>
+
+        <!-- IMAGES: Display pictures on your page -->
+        <section>
+            <h2>Images</h2>
+            <img src="image.jpg" alt="Description of image" width="300" height="200">
+            
+            <!-- FIGURE: Container for images with optional caption -->
+            <h3>Image with Caption</h3>
+            <figure>
+                <img src="image2.jpg" alt="Sample image" width="300" height="200">
+                <figcaption>This is a caption below the image</figcaption>
+            </figure>
+        </section>
+
+        <hr>
+
+        <!-- BUTTONS: Interactive elements -->
+        <section>
+            <h2>Buttons</h2>
+            <button>Click me!</button>
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </section>
+
+        <hr>
+
+        <!-- DIVS: Container for grouping content -->
+        <section>
+            <h2>Containers (Div)</h2>
+            <div style="background-color: lightblue; padding: 20px;">
+                <p>This is content inside a div (container).</p>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- FORMS: Collect user input -->
+        <section id="forms">
+            <h2>Forms</h2>
+            <form>
+                <!-- INPUT: Single line text field -->
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username">
+                <br><br>
+
+                <!-- INPUT: Password field -->
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password">
+                <br><br>
+
+                <!-- INPUT: Email field -->
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email">
+                <br><br>
+
+                <!-- TEXTAREA: Multi-line text input -->
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" cols="50" placeholder="Enter your message here"></textarea>
+                <br><br>
+
+                <!-- SELECT: Dropdown menu -->
+                <label for="country">Country:</label>
+                <select id="country" name="country">
+                    <option value="usa">United States</option>
+                    <option value="canada">Canada</option>
+                    <option value="mexico">Mexico</option>
+                </select>
+                <br><br>
+
+                <!-- BUTTONS -->
+                <button type="submit">Submit</button>
+                <button type="reset">Reset</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- TABLES: Display data in rows and columns -->
+        <section>
+            <h2>Tables</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>City</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John</td>
+                        <td>25</td>
+                        <td>Boston</td>
+                    </tr>
+                    <tr>
+                        <td>Sarah</td>
+                        <td>28</td>
+                        <td>New York</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <hr>
+
+        <!-- SEMANTIC TAGS SECTION -->
+        <section id="semantic">
+            <h2>Semantic HTML Tags</h2>
+
+            <!-- ARTICLE -->
+            <article>
+                <h3>What is Semantic HTML?</h3>
+                <p>Semantic HTML tags clearly describe the meaning of the content to both the browser and developer. This improves accessibility and SEO.</p>
+            </article>
+
+            <!-- ASIDE -->
+            <aside style="background-color: lightyellow; padding: 15px; margin: 20px 0;">
+                <h3>Quick Tip</h3>
+                <p>Always use semantic HTML tags when possible for better accessibility and SEO.</p>
+            </aside>
+
+            <!-- BLOCKQUOTE -->
+            <h3>Blockquote Example</h3>
+            <blockquote>
+                <p>"The best way to predict the future is to invent it." - Alan Kay</p>
+            </blockquote>
+
+            <!-- CODE -->
+            <h3>Code Example</h3>
+            <p>To create a heading, use: <code>&lt;h1&gt;My Title&lt;/h1&gt;</code></p>
+
+            <!-- PRE: Preformatted text -->
+            <h3>Preformatted Text</h3>
+            <pre>
+This text
+    preserves all
+        spacing and
+            line breaks
+            </pre>
+
+            <!-- SMALL -->
+            <h3>Small Text</h3>
+            <p>This is regular text. <small>This is small text (like copyright).</small></p>
+
+            <!-- SUB and SUP -->
+            <h3>Subscript and Superscript</h3>
+            <p>H<sub>2</sub>O is water. E=mc<sup>2</sup> is Einstein's formula.</p>
+
+            <!-- TIME -->
+            <h3>Time Element</h3>
+            <p>The class is on <time datetime="2026-02-12">February 12, 2026</time></p>
+        </section>
+    </main>
+
+    <hr>
+
+    <!-- SEMANTIC FOOTER: Bottom of page with copyright, links, etc -->
+    <footer>
+        <p>&copy; 2026 HTML Learning Guide. All rights reserved.</p>
+        <p>Contact: <a href="mailto:student@babson.edu">student@babson.edu</a></p>
+    </footer>
+
+</body>
+</html>

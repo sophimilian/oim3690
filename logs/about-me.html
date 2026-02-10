@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Sophia Milian | Web Developer</title>
+    <style>
+        /* GLOBAL STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        /* HEADER STYLES */
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            margin: 5px 0;
+            opacity: 0.95;
+        }
+
+        header em {
+            display: block;
+            font-size: 0.95em;
+            margin-top: 15px;
+            font-style: normal;
+            opacity: 0.85;
+        }
+
+        /* NAVIGATION STYLES */
+        nav {
+            background-color: #ecf0f1;
+            padding: 15px;
+            text-align: center;
+            sticky: top;
+            border-bottom: 2px solid #bdc3c7;
+        }
+
+        nav a {
+            color: #2c3e50;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+
+        /* MAIN CONTENT */
+        main {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* SECTION STYLES */
+        section {
+            background-color: white;
+            margin-bottom: 30px;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #3498db;
+        }
+
+        section h2 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+        }
+
+        section h3 {
+            color: #34495e;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        section h4 {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+        }
+
+        /* ARTICLE STYLES */
+        article {
+            margin-bottom: 25px;
+        }
+
+        article p {
+            color: #555;
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        /* FIGURE STYLES */
+        figure {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        figure img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid #3498db;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            object-fit: cover;
+        }
+
+        figcaption {
+            color: #7f8c8d;
+            margin-top: 12px;
+            font-style: italic;
+            font-size: 0.95em;
+        }
+
+        /* LIST STYLES */
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            color: #555;
+            margin-bottom: 8px;
+            line-height: 1.8;
+        }
+
+        /* DEFINITION LIST */
+        dl {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        dt {
+            color: #2c3e50;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        dd {
+            color: #555;
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* ASIDE STYLES */
+        aside {
+            background-color: #ecf0f1 !important;
+            border-left: 5px solid #3498db !important;
+            border-radius: 5px;
+            margin: 20px 0 !important;
+        }
+
+        aside h3 {
+            color: #2c3e50;
+        }
+
+        aside p {
+            color: #555;
+        }
+
+        /* BLOCKQUOTE STYLES */
+        blockquote {
+            background-color: #ecf0f1;
+            border-left: 5px solid #95a5a6;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-style: italic;
+        }
+
+        blockquote p {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        blockquote footer {
+            color: #7f8c8d;
+            font-style: normal;
+            font-size: 0.9em;
+        }
+
+        /* HORIZONTAL RULE */
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #bdc3c7, transparent);
+            margin: 40px 0;
+        }
+
+        /* STRONG TEXT */
+        strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        /* LINKS */
+        a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        /* FOOTER STYLES */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin: 8px 0;
+        }
+
+        footer nav {
+            background-color: transparent;
+            border-bottom: none;
+            margin-top: 15px;
+            padding: 0;
+        }
+
+        footer nav a {
+            color: #ecf0f1;
+            margin: 0 15px;
+        }
+
+        footer nav a:hover {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            main {
+                margin: 20px auto;
+            }
+
+            section {
+                padding: 25px;
+                margin-bottom: 20px;
+            }
+
+            section h2 {
+                font-size: 1.6em;
+            }
+
+            nav a {
+                display: block;
+                margin: 8px 0;
+            }
+
+            figure img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        /* UTILITY CLASSES */
+        .section-highlight {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- SEMANTIC HEADER: Top of page with title and introduction -->
+    <header>
+        <h1>About Me - Sophia Milian</h1>
+        <p>Welcome to my personal webpage - Learn about who I am, what I do, and what I love</p>
+        <em>Web Developer | Babson College Senior | Miami, FL</em>
+    </header>
+
+    <hr>
+
+    <!-- SEMANTIC NAV: Navigation menu linking to different sections -->
+    <nav>
+        <a href="index.html">Home</a> |
+        <a href="#profile">Profile</a> |
+        <a href="#skills">Skills</a> |
+        <a href="#education">Education</a> |
+        <a href="#experience">Experience</a> |
+        <a href="#goals">Future Goals</a> |
+        <a href="#interests">Interests</a> |
+        <a href="#favorites">My Favorites</a> |
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <hr>
+
+    <!-- SEMANTIC MAIN: Primary content area of the page -->
+    <main>
+        <!-- PROFILE SECTION -->
+        <section id="profile">
+            <h2>Profile</h2>
+            <article>
+                <figure>
+                    <img src="profile-picture.jpg" alt="Sophia Milian - Profile picture" width="200" height="200">
+                    <figcaption>Sophia Milian - Web Developer</figcaption>
+                </figure>
+                <p>I am <strong>Sophia Milian</strong>, a 22-year-old web developer and senior at Babson College, specializing in Web Technologies and Information Systems. Originally from Miami, Florida, I am dedicated to developing clean, user-friendly web applications and solving complex technical challenges through innovative design and strategic implementation.</p>
+                <p>I am committed to launching my career in the professional technology sector and will be relocating to <strong>New York City</strong> upon graduation in May 2026. I am eager to contribute my expertise to a dynamic organization where I can drive impactful solutions and continue my professional growth in a competitive tech environment.</p>
+                <p>Beyond my professional pursuits, I remain engaged with emerging technology trends, collaborate on innovative projects, and maintain a commitment to continuous learning and professional development within the tech community.</p>
+            </article>
+        </section>
+
+        <hr>
+
+        <!-- TECHNICAL SKILLS SECTION -->
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            
+            <table border="1" style="width: 100%; margin: 20px 0; border-collapse: collapse;">
+                <thead>
+                    <tr style="background-color: #ecf0f1;">
+                        <th style="padding: 12px; text-align: left; color: #2c3e50;">Category</th>
+                        <th style="padding: 12px; text-align: left; color: #2c3e50;">Skills</th>
+                        <th style="padding: 12px; text-align: left; color: #2c3e50;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 12px; color: #555;"><strong>Front-End</strong></td>
+                        <td style="padding: 12px; color: #555;">HTML5, CSS3, JavaScript</td>
+                        <td style="padding: 12px; color: #555;">Semantic markup, styling, responsive design, and interactive experiences</td>
+                    </tr>
+                    <tr style="background-color: #f8f9fa;">
+                        <td style="padding: 12px; color: #555;"><strong>Back-End</strong></td>
+                        <td style="padding: 12px; color: #555;">Python, SQL, Frameworks</td>
+                        <td style="padding: 12px; color: #555;">General programming, database management, and dynamic applications</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; color: #555;"><strong>Tools</strong></td>
+                        <td style="padding: 12px; color: #555;">Git, GitHub, VSCode</td>
+                        <td style="padding: 12px; color: #555;">Version control, code editor, and development environments</td>
+                    </tr>
+                    <tr style="background-color: #f8f9fa;">
+                        <td style="padding: 12px; color: #555;"><strong>Soft Skills</strong></td>
+                        <td style="padding: 12px; color: #555;">Communication, Problem-Solving</td>
+                        <td style="padding: 12px; color: #555;">Team collaboration, critical thinking, and project management</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <hr>
+
+        <!-- EDUCATION SECTION -->
+        <section id="education">
+            <h2>Education</h2>
+            <article>
+                <h3>Babson College</h3>
+                <p><strong>Degree:</strong> Bachelor of Business Administration</p>
+                <p><strong>Major:</strong> Entrepreneurship</p>
+                <p><strong>Location:</strong> Wellesley, Massachusetts</p>
+                <p><strong>Expected Graduation:</strong> May 2026</p>
+                <p><strong>GPA:</strong> 3.7 / 4.0</p>
+                
+                <h4>Current class schedule</h4>
+                <ul>
+                    <li>Web Design & Development</li>
+                    <li>Retail Management</li>
+                    <li>Global Gender Politics</li>
+                    <li>QTN</li>
+                    <li>Entrepreneurial Families</li>
+                </ul>
+
+                <h4>Academic Achievements</h4>
+                <ul>
+                    <li>Dean's List (Multiple semesters)</li>
+            
+                </ul>
+            </article>
+        </section>
+
+        <hr>
+
+        <!-- EXPERIENCE SECTION -->
+        <section id="experience">
+            <h2>Work Experience</h2>
+            
+            <table border="1" style="width: 100%; margin: 20px 0; border-collapse: collapse;">
+                <thead>
+                    <tr style="background-color: #ecf0f1;">
+                        <th style="padding: 12px; text-align: left; color: #2c3e50;">Employee</th>
+                        <th style="padding: 12px; text-align: left; color: #2c3e50;">Chic Parisien</th>
+                        <th style="padding: 12px; text-align: left; color: #2c3e50;">July 2019 - Present</th>
+                        <th style="padding: 12px; text-align: left; color: #2c3e50;">Key Achievements</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 12px; color: #555;"><strong>Seasonal Employee</strong></td>
+                        <td style="padding: 12px; color: #555;">[JCREW]</td>
+                        <td style="padding: 12px; color: #555;">June 2023 - Aug 2025</td>
+                        <td style="padding: 12px; color: #555;">Developed good customer service, visual merchandising skills, team collaboration, etc..</td>
+                    </tr>
+                    <tr style="background-color: #f8f9fa;">
+                        <td style="padding: 12px; color: #555;"><strong>Student Web Developer</strong></td>
+                        <td style="padding: 12px; color: #555;">Babson College IT</td>
+                        <td style="padding: 12px; color: #555;">Jan 2025 - Present</td>
+                        <td style="padding: 12px; color: #555;">Created web pages, implemented accessibility standards, optimized performance</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <hr>
+
+        <!-- FUTURE GOALS SECTION -->
+        <section id="goals">
+            <h2>Future Goals & Career Vision</h2>
+            <article>
+                <h3>Short-Term Goals (2026-2027)</h3>
+                <ul>
+                    <li>Graduate from Babson College with honors in May 2026</li>
+                    <li>Secure a full-time web development position with a leading organization in New York City</li>
+                    <li>Establish a comprehensive and professional portfolio demonstrating technical expertise</li>
+                    <li>Make meaningful contributions to open-source initiatives and strengthen GitHub presence</li>
+                </ul>
+
+                <h3>Long-Term Goals (2027+)</h3>
+                <ul>
+                    <li>Advance to a senior full-stack web developer role with expanded leadership responsibilities</li>
+                    <li>Mentor and develop junior developers to foster organizational growth</li>
+                    <li>Design and implement innovative web solutions that address real-world business challenges</li>
+                    <li>Establish and lead a technology-focused venture or startup initiative</li>
+                </ul>
+
+                <h3>Why New York City?</h3>
+                <p>New York City represents a premier hub for innovation, technological advancement, and business development. The city's robust technology sector, diverse employment opportunities, and thriving professional network provide an ideal environment for launching a successful career. I am committed to becoming an integral part of the NYC technology ecosystem and establishing myself among industry leaders and innovators.</p>
+            </article>
+        </section>
+
+        <hr>
+
+        <!-- PROFESSIONAL INTERESTS & DEVELOPMENT SECTION -->
+        <section id="interests">
+            <h2>Professional Interests & Development</h2>
+            <ul>
+                <li><strong>Web Design:</strong> Creating sophisticated and functional user interfaces with exceptional user experience</li>
+                <li><strong>Open Source Contribution:</strong> Collaborating on impactful community projects through GitHub</li>
+                <li><strong>Industry Research:</strong> Staying current with emerging web development methodologies and technologies</li>
+                <li><strong>Algorithm Development:</strong> Enhancing problem-solving capabilities through competitive programming platforms</li>
+                <li><strong>Visual Design:</strong> Exploring design principles and their application to digital experiences</li>
+                <li><strong>Global Perspectives:</strong> Expanding cultural awareness through international engagement</li>
+                <li><strong>Professional Networking:</strong> Building meaningful relationships within the technology community</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <!-- MY FAVORITES SECTION -->
+        <section id="favorites">
+            <h2>My Favorites</h2>
+            <p>Here are some things that inspire and motivate me:</p>
+
+            <!-- BOOKS SUBSECTION -->
+            <article>
+                <h3>Favorite Books</h3>
+                <p>Books that have shaped my thinking and skills:</p>
+                
+                <article>
+                    <h4>The Pragmatic Programmer</h4>
+                    <p><strong>Author:</strong> David Thomas & Andrew Hunt</p>
+                    <p><strong>Genre:</strong> Technology & Programming</p>
+                    <p><strong>Why I Love It:</strong> This book taught me practical coding principles and how to write better, cleaner code. It's a must-read for anyone interested in software development.</p>
+                </article>
+
+                <article>
+                    <h4>Atomic Habits</h4>
+                    <p><strong>Author:</strong> James Clear</p>
+                    <p><strong>Genre:</strong> Self-Help & Personal Development</p>
+                    <p><strong>Why I Love It:</strong> Clear's approach to building better habits through small, incremental changes has helped me stay consistent with my learning goals.</p>
+                </article>
+
+                <article>
+                    <h4>The Design of Everyday Things</h4>
+                    <p><strong>Author:</strong> Don Norman</p>
+                    <p><strong>Genre:</strong> Design & UX</p>
+                    <p><strong>Why I Love It:</strong> This book opened my eyes to how important good design is in user experience. It's essential reading for web developers.</p>
+                </article>
+            </article>
+
+            <hr>
+
+            <!-- MOVIES SUBSECTION -->
+            <article>
+                <h3>Favorite Movies</h3>
+                <p>Films that have entertained and inspired me:</p>
+                
+                <article>
+                    <h4>The Social Network</h4>
+                    <p><strong>Director:</strong> David Fincher</p>
+                    <p><strong>Year:</strong> 2010</p>
+                    <p><strong>Why I Love It:</strong> A fascinating look at the creation of Facebook and the tech entrepreneurship journey. It motivates me to think bigger about technology's impact.</p>
+                </article>
+
+                <article>
+                    <h4>Inception</h4>
+                    <p><strong>Director:</strong> Christopher Nolan</p>
+                    <p><strong>Year:</strong> 2010</p>
+                    <p><strong>Why I Love It:</strong> The complex storytelling and creative concepts inspire my thinking about problem-solving and creative solutions.</p>
+                </article>
+
+                <article>
+                    <h4>Her</h4>
+                    <p><strong>Director:</strong> Spike Jonze</p>
+                    <p><strong>Year:</strong> 2013</p>
+                    <p><strong>Why I Love It:</strong> This film explores the future of technology and human-computer interaction, which fascinates me as a developer.</p>
+                </article>
+            </article>
+
+            <hr>
+
+            <!-- MUSIC SUBSECTION -->
+            <article>
+                <h3>Favorite Music</h3>
+                <p>Artists and genres that keep me energized while coding:</p>
+                
+                <article>
+                    <h4>Artists I Love</h4>
+                    <ul>
+                        <li><strong>The Weeknd</strong> - Contemporary R&B and pop music</li>
+                        <li><strong>Dua Lipa</strong> - Modern pop with great melodies</li>
+                        <li><strong>Tyler, The Creator</strong> - Hip-hop and experimental music</li>
+                        <li><strong>Billie Eilish</strong> - Alternative and indie-pop</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h4>Favorite Genres</h4>
+                    <ul>
+                        <li><strong>Pop:</strong> Catchy melodies and modern production</li>
+                        <li><strong>Hip-Hop:</strong> Creative lyricism and beats</li>
+                        <li><strong>Electronic/Lofi:</strong> Perfect for focused work and coding</li>
+                        <li><strong>Alternative:</strong> Unique and experimental sounds</li>
+                    </ul>
+                </article>
+            </article>
+
+            <hr>
+
+            <!-- FOOD SUBSECTION -->
+            <article>
+                <h3>Favorite Foods</h3>
+                <p>Cuisines and dishes that make my taste buds happy:</p>
+                
+                <article>
+                    <h4>Cuisines I Enjoy</h4>
+                    <dl>
+                        <dt>Italian Cuisine</dt>
+                        <dd>Classic pasta dishes and authentic flavors from Italy</dd>
+                        
+                        <dt>Japanese Cuisine</dt>
+                        <dd>Sushi, ramen, and traditional Japanese dishes</dd>
+                        
+                        <dt>Mexican Cuisine</dt>
+                        <dd>Tacos, guacamole, and fresh flavors</dd>
+                        
+                        <dt>Thai Cuisine</dt>
+                        <dd>Spicy curries and aromatic dishes</dd>
+                    </dl>
+                </article>
+
+                <article>
+                    <h4>Favorite Dishes</h4>
+                    <ul>
+                        <li>Sushi rolls (especially spicy tuna)</li>
+                        <li>Margherita pizza</li>
+                        <li>Thai green curry</li>
+                        <li>Homemade tacos</li>
+                        <li>Ramen noodles</li>
+                    </ul>
+                </article>
+            </article>
+
+            <hr>
+
+            <!-- TRAVEL DESTINATIONS SUBSECTION -->
+            <article>
+                <h3>Dream Travel Destinations</h3>
+                <p>Places I'd love to visit and explore:</p>
+                
+                <article>
+                    <h4>Tokyo, Japan</h4>
+                    <p><strong>Why I Want to Go:</strong> Experience the blend of traditional culture and cutting-edge technology. The food scene is incredible!</p>
+                    <ul>
+                        <li>Visit tech hubs and innovation centers</li>
+                        <li>Explore temples and traditional neighborhoods</li>
+                        <li>Try authentic Japanese cuisine</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h4>Barcelona, Spain</h4>
+                    <p><strong>Why I Want to Go:</strong> Beautiful architecture, vibrant culture, and Mediterranean beaches.</p>
+                    <ul>
+                        <li>Explore Gaudí's architectural masterpieces</li>
+                        <li>Enjoy the beach and outdoor culture</li>
+                        <li>Experience the local food scene</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h4>San Francisco, USA</h4>
+                    <p><strong>Why I Want to Go:</strong> The tech capital of the world. Home to innovation and Silicon Valley.</p>
+                    <ul>
+                        <li>Visit tech company headquarters</li>
+                        <li>Network with tech professionals</li>
+                        <li>Explore startup culture and innovation</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h4>Paris, France</h4>
+                    <p><strong>Why I Want to Go:</strong> The city of art, culture, and romance.</p>
+                    <ul>
+                        <li>Visit world-famous museums and galleries</li>
+                        <li>Experience French cuisine</li>
+                        <li>Walk along the Seine and explore historic neighborhoods</li>
+                    </ul>
+                </article>
+            </article>
+        </section>
+
+        <hr>
+
+        <!-- TESTIMONIALS SECTION -->
+        <section>
+            <h2>Testimonials</h2>
+            
+            <blockquote>
+                <p>"Sophia is an excellent web developer with strong attention to detail and a passion for clean code. She consistently delivers high-quality work."</p>
+                <footer>- Professor Smith, Babson College</footer>
+            </blockquote>
+
+            <blockquote>
+                <p>"Working with Sophia was a pleasure. She brought creativity and technical expertise to our project, and her communication skills are outstanding."</p>
+                <footer>- Project Manager, [Company Name]</footer>
+            </blockquote>
+
+            <blockquote>
+                <p>"Sophia is a dedicated developer who is always eager to learn and grow. She's going to do amazing things in the tech industry."</p>
+                <footer>- IT Director, Babson College</footer>
+            </blockquote>
+        </section>
+
+        <hr>
+
+        <!-- SUMMARY SECTION -->
+        <section>
+            <h2>Why These Favorites Matter</h2>
+            <aside style="background-color: #ecf0f1 !important;">
+                <p>My favorites reflect my passions and interests. They inspire my creativity, fuel my curiosity, and help me grow both personally and professionally. Whether it's through books that teach me new skills, movies that spark my imagination, or travels that broaden my perspective, these experiences shape who I am. As I prepare to enter the tech industry in New York City, I carry these passions with me as I continue to evolve as a developer and person.</p>
+            </aside>
+        </section>
+
+        <hr>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <p>I welcome inquiries regarding collaboration, career opportunities, and professional dialogue. Please contact me through the following channels:</p>
+            
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:sophia.milian@babson.edu">sophia.milian@babson.edu</a></li>
+                <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/sophiamilian" target="_blank">linkedin.com/in/sophiamilian</a></li>
+                <li><strong>GitHub:</strong> <a href="https://github.com/sophiamilian" target="_blank">github.com/sophiamilian</a></li>
+                <li><strong>Location:</strong> Currently in Wellesley, MA | Moving to New York City (2026)</li>
+            </ul>
+
+            <aside style="background-color: #ecf0f1 !important;">
+                <h3>Professional Inquiry</h3>
+                <p>I am open to discussions regarding potential opportunities, collaborative projects, and professional partnerships within the New York City technology sector. Please reach out with any relevant inquiries or opportunities.</p>
+            </aside>
+        </section>
+    </main>
+
+    <hr>
+
+    <!-- SEMANTIC FOOTER: Bottom of page with copyright and links -->
+    <footer>
+        <p>&copy; 2026 Sophia Milian. All rights reserved.</p>
+        <p>Last updated: <time datetime="2026-02-12">February 12, 2026</time></p>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="about-me.html">About Me</a> |
+            <a href="s07-demo.html">HTML Demo</a> |
+            <a href="contact.html">Contact</a>
+        </nav>
+    </footer>
+
+</body>
+</html>
