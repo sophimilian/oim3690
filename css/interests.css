@@ -1,61 +1,41 @@
-:root {
-  --primary-color: #3498db;
-  --secondary-color: #2ecc71;
-  --text-color: #333;
-  --background-color: #f4f4f4;
-  --highlight-bg: #ffff99;
-}
+/* Basic CSS Styles */
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  margin: 0;
-  padding: 20px;
-}
-
-.container {
-  max-width: 800px;
-  margin: 0 auto;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
-  text-align: center;
-  color: var(--primary-color);
+    color: #2c3e50;
+    text-align: center;
 }
 
-.section-title {
-  color: var(--primary-color);
-  font-size: 1.5em;
-  margin-bottom: 10px;
-  transition: color 0.3s ease;
+p {
+    line-height: 1.6;
+    margin: 20px;
 }
 
-.section-title:hover {
-  color: var(--secondary-color);
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
 }
 
-.highlight {
-  background-color: var(--highlight-bg);
-  padding: 2px 4px;
-  border-radius: 3px;
-  transition: background-color 0.3s ease;
+.button {
+    display: inline-block;
+    font-size: 16px;
+    color: #fff;
+    background-color: #3498db;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
-.highlight:hover {
-  background-color: var(--secondary-color);
-  color: white;
-}
-
-section {
-  margin-bottom: 20px;
-  padding: 15px;
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: box-shadow 0.3s ease;
-}
-
-section:hover {
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+.button:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
 }
