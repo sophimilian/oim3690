@@ -12,3 +12,5 @@ This is my course repository for OIM3690.
 ## Projects 
 - [Personal Website](https://sophimilian.github.io/)
 - [Mini Project 1](https://https://github.com/sophimilian/mini-project-01)
+
+
