@@ -1,4 +1,8 @@
 body {
+    background-image: url('images/istock-bahamas.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 div {
@@ -8,12 +12,5 @@ div {
     font-style: italic;
     color: #333;
     font-weight: bold;
-}
-
-body {
-    background-image: url('images/istock-bahamas.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
 } 
 
