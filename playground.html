@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/svg+xml" href="favicon.svg">
+	<title>Playground</title>
+</head>
+<body>
+	<header>
+		<h1>Playground</h1>
+		<p>Interactive map embed of Babson College in Wellesley, Massachusetts.</p>
+	</header>
+
+	<main>
+		<section aria-label="Google map of Babson College">
+			<iframe
+				title="Google Map of Babson College"
+				src="https://www.google.com/maps?q=Babson+College,+Wellesley,+MA&output=embed"
+				width="100%"
+				height="450"
+				style="border: 0;"
+				allowfullscreen
+				loading="lazy"
+				referrerpolicy="no-referrer-when-downgrade">
+			</iframe>
+		</section>
+
+		<section aria-label="Frequently asked questions">
+			<h2>FAQ</h2>
+			<details>
+				<summary>Where is Babson College located?</summary>
+				<p>Babson College is in Wellesley, Massachusetts.</p>
+			</details>
+			<details>
+				<summary>Can I zoom in and out on the map?</summary>
+				<p>Yes. Use your mouse, touchpad, or touch gestures in the embedded map.</p>
+			</details>
+			<details>
+				<summary>How do I add my own FAQ question?</summary>
+				<p>Copy one <code>&lt;details&gt;</code> block, then update the <code>&lt;summary&gt;</code> and paragraph text.</p>
+			</details>
+		</section>
+
+		<section aria-label="Canvas drawing example">
+			<h2>Canvas Drawing Practice</h2>
+			<p>Use your mouse to draw directly on the blank canvas.</p>
+			<label for="brushColor">Brush color:</label>
+			<input type="color" id="brushColor" value="#000000">
+			<label for="toolMode">Tool:</label>
+			<select id="toolMode">
+				<option value="draw">Draw</option>
+				<option value="erase">Eraser</option>
+			</select>
+			<label for="eraserShape">Eraser shape:</label>
+			<select id="eraserShape">
+				<option value="round">Round</option>
+				<option value="square">Square</option>
+			</select>
+			<label for="brushSize">Size:</label>
+			<input type="range" id="brushSize" min="2" max="40" value="8">
+			<button type="button" id="resetCanvas">Reset Canvas</button>
+			<canvas id="drawingBoard" width="700" height="350" style="border: 1px solid #ccc; max-width: 100%;"></canvas>
+		</section>
+	</main>
+
+	<script>
+		const canvas = document.getElementById("drawingBoard");
+		const brushColorInput = document.getElementById("brushColor");
+		const toolModeInput = document.getElementById("toolMode");
+		const eraserShapeInput = document.getElementById("eraserShape");
+		const brushSizeInput = document.getElementById("brushSize");
+		const resetCanvasButton = document.getElementById("resetCanvas");
+		const ctx = canvas.getContext("2d");
+
+		ctx.fillStyle = "#ffffff";
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+		function applyToolSettings() {
+			ctx.lineWidth = Number(brushSizeInput.value);
+			if (toolModeInput.value === "erase") {
+				ctx.strokeStyle = "#ffffff";
+				ctx.lineCap = eraserShapeInput.value === "square" ? "square" : "round";
+				ctx.lineJoin = eraserShapeInput.value === "square" ? "miter" : "round";
+			} else {
+				ctx.strokeStyle = brushColorInput.value;
+				ctx.lineCap = "round";
+				ctx.lineJoin = "round";
+			}
+		}
+
+		applyToolSettings();
+
+		brushColorInput.addEventListener("input", applyToolSettings);
+		toolModeInput.addEventListener("change", applyToolSettings);
+		eraserShapeInput.addEventListener("change", applyToolSettings);
+		brushSizeInput.addEventListener("input", applyToolSettings);
+
+		resetCanvasButton.addEventListener("click", () => {
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			ctx.fillStyle = "#ffffff";
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+			applyToolSettings();
+		});
+
+		let isDrawing = false;
+
+		canvas.addEventListener("mousedown", (event) => {
+			applyToolSettings();
+			isDrawing = true;
+			ctx.beginPath();
+			ctx.moveTo(event.offsetX, event.offsetY);
+		});
+
+		canvas.addEventListener("mousemove", (event) => {
+			if (!isDrawing) return;
+			ctx.lineTo(event.offsetX, event.offsetY);
+			ctx.stroke();
+		});
+
+		canvas.addEventListener("mouseup", () => {
+			isDrawing = false;
+		});
+
+		canvas.addEventListener("mouseleave", () => {
+			isDrawing = false;
+		});
+	</script>
+</body>
+</html>
