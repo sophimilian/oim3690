@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Simple Todo App</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			font-family: "Quicksand", "Trebuchet MS", sans-serif;
+			--bg: #fff7fb;
+			--card: #ffffff;
+			--card-soft: #fffafc;
+			--border: #f1d8e4;
+			--text: #4b3650;
+			--muted: #7c687f;
+			--primary: #cc5fa2;
+			--primary-focus: rgba(204, 95, 162, 0.2);
+			--secondary: #9b7ca5;
+		}
+
+		body {
+			margin: 0;
+			min-height: 100vh;
+			display: grid;
+			place-items: start center;
+			background: linear-gradient(180deg, #fff8fc 0%, #fdf6ff 100%);
+			padding: 2.5rem 1rem;
+			color: var(--text);
+		}
+
+		.app {
+			width: 100%;
+			max-width: 620px;
+			background: var(--card);
+			border: 1px solid var(--border);
+			border-radius: 18px;
+			box-shadow: 0 14px 30px rgba(121, 67, 109, 0.12);
+			padding: 1.35rem;
+		}
+
+		h1 {
+			margin-top: 0;
+			margin-bottom: 1.25rem;
+			font-size: 1.7rem;
+			letter-spacing: 0.2px;
+		}
+
+		h2 {
+			font-size: 1rem;
+			margin: 1.3rem 0 0.6rem;
+			color: var(--text);
+		}
+
+		.form-row {
+			display: flex;
+			gap: 0.5rem;
+			margin-bottom: 0.25rem;
+		}
+
+		input[type="text"] {
+			flex: 1;
+			border: 1px solid var(--border);
+			border-radius: 10px;
+			padding: 0.72rem;
+			font-size: 1rem;
+			outline: none;
+			color: var(--text);
+			background: #fff;
+		}
+
+		input[type="text"]:focus {
+			border-color: var(--primary);
+			box-shadow: 0 0 0 3px var(--primary-focus);
+		}
+
+		select {
+			border: 1px solid var(--border);
+			border-radius: 10px;
+			padding: 0.62rem;
+			font: inherit;
+			color: var(--text);
+			background: #fff;
+			outline: none;
+		}
+
+		select:focus {
+			border-color: var(--primary);
+			box-shadow: 0 0 0 3px var(--primary-focus);
+		}
+
+		button {
+			border: 0;
+			border-radius: 10px;
+			padding: 0.6rem 0.8rem;
+			font-size: 0.95rem;
+			font-family: inherit;
+			font-weight: 600;
+			cursor: pointer;
+			background: var(--primary);
+			color: #ffffff;
+			transition: transform 0.06s ease, opacity 0.2s ease;
+		}
+
+		button:hover {
+			opacity: 0.92;
+		}
+
+		button:active {
+			transform: translateY(1px);
+		}
+
+		button.secondary {
+			background: var(--secondary);
+		}
+
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			min-height: 8px;
+		}
+
+		li {
+			display: flex;
+			align-items: center;
+			gap: 0.65rem;
+			border: 1px solid var(--border);
+			border-radius: 10px;
+			padding: 0.64rem;
+			margin-bottom: 0.6rem;
+			background: #fff;
+		}
+
+		.todo-text {
+			flex: 1;
+			word-break: break-word;
+		}
+
+		.todo-category {
+			font-size: 0.78rem;
+			padding: 0.18rem 0.45rem;
+			border-radius: 999px;
+			background: #f8e8f1;
+			color: #7d3f66;
+			white-space: nowrap;
+		}
+
+		.star-button {
+			background: transparent;
+			color: #d6a430;
+			padding: 0.15rem 0.35rem;
+			font-size: 1rem;
+			line-height: 1;
+			border: 1px solid transparent;
+		}
+
+		.star-button:hover {
+			opacity: 1;
+			background: #fff6d9;
+			border-color: #f6df9e;
+		}
+
+		li.starred {
+			border-color: #f0d58b;
+			background: #fffaf0;
+		}
+
+		li.completed .todo-text {
+			text-decoration: line-through;
+			color: var(--muted);
+		}
+
+		.section-card {
+			padding: 0.9rem;
+			border: 1px solid var(--border);
+			border-radius: 12px;
+			background: var(--card-soft);
+		}
+
+		li.category-heading {
+			border: 0;
+			background: transparent;
+			padding: 0.2rem 0;
+			margin: 0.2rem 0 0.35rem;
+			font-size: 0.86rem;
+			font-weight: 700;
+			color: #7d3f66;
+		}
+
+		textarea {
+			width: 100%;
+			min-height: 120px;
+			resize: vertical;
+			border: 1px solid var(--border);
+			border-radius: 10px;
+			padding: 0.72rem;
+			font: inherit;
+			color: var(--text);
+			background: #fff;
+			box-sizing: border-box;
+			outline: none;
+		}
+
+		textarea:focus {
+			border-color: var(--primary);
+			box-shadow: 0 0 0 3px var(--primary-focus);
+		}
+
+		.empty-note {
+			margin: 0;
+			font-size: 0.92rem;
+			color: var(--muted);
+		}
+
+		.footer {
+			margin-top: 1rem;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 0.5rem;
+			flex-wrap: wrap;
+			font-size: 0.9rem;
+			color: var(--text);
+		}
+	</style>
+</head>
+<body>
+	<main class="app">
+		<h1>Todo App</h1>
+
+		<form id="todoForm" class="form-row">
+			<input id="todoInput" type="text" placeholder="Add a task..." aria-label="New todo">
+			<input id="todoCategoryInput" type="text" placeholder="Category (e.g., Classes)" aria-label="Todo category" list="taskCategories">
+			<datalist id="taskCategories"></datalist>
+			<button type="submit">Add</button>
+		</form>
+
+		<h2>Starred Todos</h2>
+		<section class="section-card" aria-label="Starred todo section">
+			<ul id="starredTodoList" aria-label="Starred todo list"></ul>
+			<p id="starredEmptyNote" class="empty-note">No starred tasks yet.</p>
+		</section>
+
+		<h2>Active Todos</h2>
+		<section class="section-card" aria-label="Active todo section">
+			<ul id="activeTodoList" aria-label="Active todo list"></ul>
+			<p id="activeEmptyNote" class="empty-note">No active tasks yet.</p>
+		</section>
+
+		<h2>Completed Todos</h2>
+		<section class="section-card" aria-label="Completed todo section">
+			<ul id="completedTodoList" aria-label="Completed todo list"></ul>
+			<p id="completedEmptyNote" class="empty-note">No completed tasks yet.</p>
+		</section>
+
+		<h2>Quick Notes</h2>
+		<section class="section-card" aria-label="Quick notes section">
+			<textarea id="quickNotes" placeholder="Write quick notes here..."></textarea>
+			<p class="empty-note">Your notes auto-save as you type.</p>
+		</section>
+
+		<div class="footer">
+			<span id="itemsLeft">0 items left</span>
+			<button id="clearCompleted" type="button" class="secondary">Clear Completed</button>
+		</div>
+	</main>
+
+	<script>
+		const todoForm = document.getElementById("todoForm");
+		const todoInput = document.getElementById("todoInput");
+		const todoCategoryInput = document.getElementById("todoCategoryInput");
+		const taskCategories = document.getElementById("taskCategories");
+		const starredTodoList = document.getElementById("starredTodoList");
+		const activeTodoList = document.getElementById("activeTodoList");
+		const completedTodoList = document.getElementById("completedTodoList");
+		const starredEmptyNote = document.getElementById("starredEmptyNote");
+		const activeEmptyNote = document.getElementById("activeEmptyNote");
+		const completedEmptyNote = document.getElementById("completedEmptyNote");
+		const quickNotes = document.getElementById("quickNotes");
+		const itemsLeft = document.getElementById("itemsLeft");
+		const clearCompleted = document.getElementById("clearCompleted");
+
+		let todos = JSON.parse(localStorage.getItem("todos") || "[]");
+		quickNotes.value = localStorage.getItem("quickNotes") || "";
+
+		function saveTodos() {
+			localStorage.setItem("todos", JSON.stringify(todos));
+		}
+
+		function renderTaskCategorySuggestions() {
+			taskCategories.innerHTML = "";
+			const categories = [...new Set(
+				todos
+					.map((todo) => (todo.category || "").trim())
+					.filter(Boolean)
+			)].sort((a, b) => a.localeCompare(b));
+
+			categories.forEach((categoryName) => {
+				const option = document.createElement("option");
+				option.value = categoryName;
+				taskCategories.appendChild(option);
+			});
+		}
+
+		function createTodoItem(todo) {
+			const li = document.createElement("li");
+			if (todo.completed) li.classList.add("completed");
+			if (todo.starred) li.classList.add("starred");
+
+			const checkbox = document.createElement("input");
+			checkbox.type = "checkbox";
+			checkbox.checked = todo.completed;
+			checkbox.addEventListener("change", () => {
+				todo.completed = checkbox.checked;
+				saveTodos();
+				renderTodos();
+			});
+
+			const starButton = document.createElement("button");
+			starButton.type = "button";
+			starButton.className = "star-button";
+			starButton.textContent = todo.starred ? "★" : "☆";
+			starButton.setAttribute("aria-label", todo.starred ? "Unstar todo" : "Star todo");
+			starButton.addEventListener("click", () => {
+				todo.starred = !todo.starred;
+				saveTodos();
+				renderTodos();
+			});
+
+			const text = document.createElement("span");
+			text.className = "todo-text";
+			text.textContent = todo.text;
+
+			const categoryBadge = document.createElement("span");
+			categoryBadge.className = "todo-category";
+			categoryBadge.textContent = (todo.category || "General").trim() || "General";
+
+			const deleteButton = document.createElement("button");
+			deleteButton.type = "button";
+			deleteButton.className = "secondary";
+			deleteButton.textContent = "Delete";
+			deleteButton.addEventListener("click", () => {
+				todos = todos.filter((item) => item.id !== todo.id);
+				saveTodos();
+				renderTodos();
+			});
+
+			li.append(checkbox, starButton, text, categoryBadge, deleteButton);
+			return li;
+		}
+
+		function renderGroupedList(listElement, listTodos) {
+			const grouped = {};
+			listTodos.forEach((todo) => {
+				const categoryName = (todo.category || "General").trim() || "General";
+				if (!grouped[categoryName]) {
+					grouped[categoryName] = [];
+				}
+				grouped[categoryName].push(todo);
+			});
+
+			Object.keys(grouped)
+				.sort((a, b) => a.localeCompare(b))
+				.forEach((categoryName) => {
+					const headingItem = document.createElement("li");
+					headingItem.className = "category-heading";
+					headingItem.textContent = categoryName;
+					listElement.appendChild(headingItem);
+
+					grouped[categoryName].forEach((todo) => {
+						listElement.appendChild(createTodoItem(todo));
+					});
+				});
+		}
+
+		function updateItemsLeft() {
+			const remaining = todos.filter((todo) => !todo.completed).length;
+			itemsLeft.textContent = `${remaining} item${remaining === 1 ? "" : "s"} left`;
+		}
+
+		function renderTodos() {
+			starredTodoList.innerHTML = "";
+			activeTodoList.innerHTML = "";
+			completedTodoList.innerHTML = "";
+
+			renderGroupedList(starredTodoList, todos.filter((todo) => !todo.completed && todo.starred));
+			renderGroupedList(activeTodoList, todos.filter((todo) => !todo.completed && !todo.starred));
+			renderGroupedList(completedTodoList, todos.filter((todo) => todo.completed));
+
+			starredEmptyNote.style.display = starredTodoList.children.length ? "none" : "block";
+			activeEmptyNote.style.display = activeTodoList.children.length ? "none" : "block";
+			completedEmptyNote.style.display = completedTodoList.children.length ? "none" : "block";
+
+			renderTaskCategorySuggestions();
+			updateItemsLeft();
+		}
+
+		todoForm.addEventListener("submit", (event) => {
+			event.preventDefault();
+			const text = todoInput.value.trim();
+			if (!text) return;
+			const category = todoCategoryInput.value.trim() || "General";
+
+			todos.push({
+				id: crypto.randomUUID(),
+				text,
+				category,
+				completed: false,
+				starred: false,
+			});
+
+			todoInput.value = "";
+			saveTodos();
+			renderTodos();
+			todoInput.focus();
+		});
+
+		clearCompleted.addEventListener("click", () => {
+			todos = todos.filter((todo) => !todo.completed);
+			saveTodos();
+			renderTodos();
+		});
+
+		quickNotes.addEventListener("input", () => {
+			localStorage.setItem("quickNotes", quickNotes.value);
+		});
+
+		renderTodos();
+	</script>
+</body>
+</html>
