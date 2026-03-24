@@ -10,10 +10,10 @@
 		}
 
 		.note {
-			background: #ece7b1;
+			background: #b9eac0;
 			padding: 10px;
 			margin-top: 10px;
-			border: 1px solid #e6d96a;
+			border: 1px solid #c9fcc4;
 		}
 	</style>
 </head>
@@ -25,10 +25,12 @@
 	<div id="notes"></div>
 
 	<script>
+		const heading = document.querySelector('h1');
 		const textarea = document.querySelector('#message');
 		const counter = document.querySelector('#count');
 		const postBtn = document.querySelector('#postBtn');
 		const notes = document.querySelector('#notes');
+		let isLightGreen = false;
 
 		textarea.addEventListener('input', function() {
 			console.log('input changed');
@@ -36,6 +38,9 @@
 		});
 
 		postBtn.addEventListener('click', function() {
+			heading.style.color = isLightGreen ? 'green' : 'lightgreen';
+			isLightGreen = !isLightGreen;
+
 			if (!textarea.value.trim()) return;
 
 			const note = document.createElement('div');
