@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>S16 Demo</title>
+	<style>
+		h1 {
+			color: green;
+		}
+
+		.note {
+			background: #ece7b1;
+			padding: 10px;
+			margin-top: 10px;
+			border: 1px solid #e6d96a;
+		}
+	</style>
+</head>
+<body>
+	<h1>S16 Demo</h1>
+	<button id="postBtn" type="button">Click me</button>
+	<textarea id="message"></textarea>
+	<p>Characters: <span id="count">0</span></p>
+	<div id="notes"></div>
+
+	<script>
+		const textarea = document.querySelector('#message');
+		const counter = document.querySelector('#count');
+		const postBtn = document.querySelector('#postBtn');
+		const notes = document.querySelector('#notes');
+
+		textarea.addEventListener('input', function() {
+			console.log('input changed');
+			counter.textContent = textarea.value.length;
+		});
+
+		postBtn.addEventListener('click', function() {
+			if (!textarea.value.trim()) return;
+
+			const note = document.createElement('div');
+			note.className = 'note';
+			note.textContent = textarea.value;
+			notes.appendChild(note);
+
+			textarea.value = '';
+			counter.textContent = '0';
+		});
+	</script>
+</body>
+</html>
