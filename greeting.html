@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+            background-color: #eaf3ff;
+            transition: background-color 250ms ease;
+        }
+
+        input,
+        select,
+        button {
+            padding: 0.5rem 0.75rem;
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+
+        #greeting {
+            margin-top: 1.25rem;
+            padding: 0.75rem 1rem;
+            min-height: 1.5rem;
+            border-radius: 0.5rem;
+            background-color: #f3f7ff;
+            color: #1f2a44;
+            border: 1px solid #d7e3ff;
+            width: fit-content;
+            opacity: 0;
+            transform: translateY(8px);
+        }
+
+        #greeting.show {
+            animation: greetingIn 500ms ease forwards;
+        }
+
+        @keyframes greetingIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello, world!</h1>
+
+    <input id="name" type="text">
+    <select id="language">
+        <option value="english">English</option>
+        <option value="spanish">Spanish</option>
+        <option value="chinese">Chinese</option>
+    </select>
+    <button>Greet</button>
+    <p id="greeting"></p>
+
+    <script>
+        const input = document.querySelector('#name');
+        const language = document.querySelector('#language');
+        const button = document.querySelector('button');
+        const greeting = document.querySelector('#greeting');
+
+        const languageBackgrounds = {
+            english: '#eaf3ff',
+            spanish: '#dcecff',
+            chinese: '#cfe4ff'
+        };
+
+        function applyLanguageBackground(selectedLanguage) {
+            document.body.style.backgroundColor = languageBackgrounds[selectedLanguage];
+        }
+
+        language.addEventListener('change', function() {
+            applyLanguageBackground(language.value);
+        });
+
+        button.addEventListener('click', function() {
+            const name = input.value.trim();
+            const selectedLanguage = language.value;
+
+            applyLanguageBackground(selectedLanguage);
+
+            const messages = {
+                english: {
+                    greet: (name) => `Hello, ${name}!`,
+                    empty: 'Please enter your name.'
+                },
+                spanish: {
+                    greet: (name) => `¡Hola, ${name}!`,
+                    empty: 'Por favor, ingresa tu nombre.'
+                },
+                chinese: {
+                    greet: (name) => `你好，${name}！`,
+                    empty: '请输入你的名字。'
+                }
+            };
+
+            if (name) {
+                greeting.textContent = messages[selectedLanguage].greet(name);
+            } else {
+                greeting.textContent = messages[selectedLanguage].empty;
+            }
+
+            greeting.classList.remove('show');
+            void greeting.offsetWidth;
+            greeting.classList.add('show');
+        });
+
+        applyLanguageBackground(language.value);
+    </script>
+
+</body>
+</html>
