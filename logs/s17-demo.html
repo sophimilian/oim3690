@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>S17 Demo</title>
+	</head>
+	<body>
+		<h1>Hello, world!</h1>
+		<script>
+            //String:
+			const firstName = "Sophia";
+			const lastName = "Milian";
+            const name = firstName + " " + lastName; 
+            const message1 = `Hello, ${name}! Welcome to JavaScript.`; 
+
+            //Numbers:
+            const age = 22;
+            console.log(`You are ${age} years old.`);
+            console.log(message1);
+
+            //Booleans:
+            const isStudent = true;
+            console.log(`Is the user a student? ${isStudent}`); 
+
+            if (isStudent) {
+                console.log("You are a student.");
+            } else {
+                console.log("You are not a student.");
+            }
+
+            //undefined and null 
+            let city;
+            console.log(`City: ${city}`); // undefined
+            city = null;
+            console.log(`City: ${city}`); // null   
+            
+		</script>
+	</body>
+</html>
