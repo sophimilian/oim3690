@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 18 Demo</title>
+</head>
+<body>
+    <label for="first-name">First Name</label>
+    <input type="text" id="first-name"/>
+    <br>
+    <label for="last-name">Last Name</label>
+    <input type="text" id="last-name"/>
+    <br>
+    <label for="x">X</label>
+    <input type="number" id="x"/>
+    <br>
+    <label for="y">Y</label>
+    <input type="number" id="y"/>
+    <br>
+    <button>Calculate</button>
+    <p id="result"></p>
+
+    <script>
+        const button = document.querySelector('button');
+        const result = document.getElementById('result');
+
+        const calculate = () => {
+            const x = parseFloat(document.getElementById('x').value) || 0;
+            const y = parseFloat(document.getElementById('y').value) || 0;
+            const firstName = document.getElementById('first-name').value || '';
+            const lastName = document.getElementById('last-name').value || '';
+            const sum = x + y;
+            result.textContent = `${firstName} ${lastName} the sum is: ${sum}`;
+        };
+
+        button.addEventListener('click', calculate);
+    </script>
+</body>
+</html>

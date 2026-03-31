@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+</head>
+<body>
+    <input type="number" id="score" placeholder="Enter score" />
+    <button id="check-grade">Check Grade</button>
+    <p id="result"></p>
+
+    <script>
+        function getGrade(score) {
+            if (score >= 90) {
+                return "A";
+            } else if (score >= 80) {
+                return "B";
+            } else if (score >= 70) {
+                return "C";
+            } else if (score >= 60) {
+                return "D";
+            } else {
+                return "F";
+            }
+        }
+
+        const button = document.getElementById("check-grade");
+        const result = document.getElementById("result");
+        const scoreInput = document.getElementById("score");
+
+        button.addEventListener("click", function () {
+            const inputValue = scoreInput.value;
+
+            if (inputValue === "") {
+                result.textContent = "please enter a score";
+                result.style.color = "black";
+                return;
+            }
+
+            const score = Number(inputValue);
+
+            if (score < 0 || score > 100) {
+                result.textContent = "score must be between 0 and 100";
+                result.style.color = "black";
+                return;
+            }
+
+            const grade = getGrade(score);
+            result.textContent = `Grade: ${grade}`;
+
+            if (grade === "A" || grade === "B") {
+                result.style.color = "green";
+            } else if (grade === "D" || grade === "F") {
+                result.style.color = "red";
+            } else {
+                result.style.color = "black";
+            }
+        });
+    </script>
+</body>
+</html>
