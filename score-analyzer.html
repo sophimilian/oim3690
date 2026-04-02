@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Score Analyzer</title>
+</head>
+<body>
+	<h1>Score Analyzer</h1>
+
+	<h2>Summary</h2>
+	<ul id="summary"></ul>
+
+	<h2>Scores and Grades</h2>
+	<ul id="score-list"></ul>
+
+	<script>
+		const scores = [88, 72, 95, 63, 81, 56, 90];
+		function getGrade(score) {
+			if (score >= 90) return 'A';
+			if (score >= 80) return 'B';
+			if (score >= 70) return 'C';
+			if (score >= 60) return 'D';
+			return 'F';
+		}
+		const summary = document.getElementById('summary');
+		const scoreList = document.getElementById('score-list');
+		let total = 0, highest = scores[0], lowest = scores[0], passingCount = 0;
+
+		for (let i = 0; i < scores.length; i++) {
+			const score = scores[i];
+			total += score;
+			if (score > highest) highest = score;
+			if (score < lowest) lowest = score;
+			if (score >= 60) passingCount++;
+			const li = document.createElement('li');
+			li.textContent = score + ' (' + getGrade(score) + ')';
+			scoreList.appendChild(li);
+		}
+		const average = total / scores.length;
+		summary.innerHTML =
+			'<li>Total number of scores: ' + scores.length + '</li>' +
+			'<li>Average score: ' + average.toFixed(1) + '</li>' +
+			'<li>Highest score: ' + highest + '</li>' +
+			'<li>Lowest score: ' + lowest + '</li>' +
+			'<li>Number of passing scores (>= 60): ' + passingCount + '</li>';
+	</script>
+</body>
+</html>
